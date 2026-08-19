@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Google Sheet Data</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:8px;
+    font-family:Arial,"Noto Sans Devanagari",sans-serif;
+    background:#f5f5f5;
+}
+
+/* SEARCH */
+
+.search{
+    width:100%;
+    padding:12px;
+    margin-bottom:8px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+    background:white;
+}
+
+.search:focus{
+    border-color:#1976d2;
+}
+
+/* STATUS */
+
+.status{
+    text-align:center;
+    padding:10px;
+    margin-bottom:8px;
+    background:#e3f2fd;
+    color:#0d47a1;
+    border-radius:8px;
+}
+
+/* TABLE */
+
+.table-wrap{
+    width:100%;
+    overflow-x:auto;
+    background:white;
+    border:1px solid #ddd;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#1976d2;
+    color:white;
+    padding:10px;
+    border:1px solid #ddd;
+    white-space:nowrap;
+    position:sticky;
+    top:0;
+}
+
+td{
+    padding:9px;
+    border:1px solid #ddd;
+    vertical-align:middle;
+    overflow-wrap:anywhere;
+}
+
+tbody tr:nth-child(even){
+    background:#f8f8f8;
+}
+
+@media(max-width:600px){
+
+    body{
+        padding:5px;
+    }
+
+    th,
+    td{
+        font-size:13px;
+        padding:7px 6px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<input
+    type="search"
+    id="search"
+    class="search"
+    placeholder="🔍 डेटा खोजें..."
+>
+
+<div id="status" class="status">
+    ⏳ डेटा लोड हो रहा है...
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead id="tableHead"></thead>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   आपकी Published Google Sheet
+========================================== */
+
+const SHEET_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vS_a-O4qZpKLTLnbuCnUOCJtuMZf7J-r-uZ36ltUcocfGaNQwBbAxFj5Uaw8i1K9A/pub?output=csv";
+
+
+let allData = [];
+
+
+/* ==========================================
+   CSV PARSER
+========================================== */
+
+function parseCSV(text){
+
+    const rows = [];
+
+    let row = [];
+
+    let value = "";
+
+    let quote = false;
+
+
+    for(
+        let i = 0;
+        i < text.length;
+        i++
+    ){
+
+        const char = text[i];
+
+        const next = text[i + 1];
+
+
+        if(
+            char === '"' &&
+            quote &&
+            next === '"'
+        ){
+
+            value += '"';
+
+            i++;
+
+        }
+
+        else if(char === '"'){
+
+            quote = !quote;
+
+        }
+
+        else if(
+            char === "," &&
+            !quote
+        ){
+
+            row.push(value);
+
+            value = "";
+
+        }
+
+        else if(
+            (char === "\n" || char === "\r") &&
+            !quote
+        ){
+
+            if(
+                char === "\r" &&
+                next === "\n"
+            ){
+
+                i++;
+
+            }
+
+            row.push(value);
+
+            rows.push(row);
+
+            row = [];
+
+            value = "";
+
+        }
+
+        else{
+
+            value += char;
+
+        }
+
+    }
+
+
+    if(
+        value !== "" ||
+        row.length
+    ){
+
+        row.push(value);
+
+        rows.push(row);
+
+    }
+
+
+    return rows;
+
+}
+
+
+/* ==========================================
+   LOAD SHEET
+========================================== */
+
+async function loadSheet(){
+
+    const status =
+        document.getElementById("status");
+
+
+    try{
+
+        const response =
+            await fetch(
+                SHEET_URL,
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP " + response.status
+            );
+
+        }
+
+
+        const text =
+            await response.text();
+
+
+        if(
+            !text ||
+            text.trim().length === 0
+        ){
+
+            throw new Error(
+                "Empty data"
+            );
+
+        }
+
+
+        allData =
+            parseCSV(text);
+
+
+        if(
+            allData.length === 0
+        ){
+
+            throw new Error(
+                "No rows"
+            );
+
+        }
+
+
+        showTable(
+            allData
+        );
+
+
+        status.style.display =
+            "none";
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+
+        status.innerHTML =
+            "❌ Google Sheet का डेटा लोड नहीं हो पाया।<br>" +
+            "कृपया Sheet के Publish to web की जाँच करें।";
+
+    }
+
+}
+
+
+/* ==========================================
+   DISPLAY TABLE
+========================================== */
+
+function showTable(data){
+
+    const head =
+        document.getElementById(
+            "tableHead"
+        );
+
+    const body =
+        document.getElementById(
+            "tableBody"
+        );
+
+
+    head.innerHTML = "";
+
+    body.innerHTML = "";
+
+
+    if(
+        data.length === 0
+    ){
+
+        return;
+
+    }
+
+
+    /* HEADER */
+
+    const header =
+        document.createElement("tr");
+
+
+    data[0].forEach(
+        function(value){
+
+            const th =
+                document.createElement("th");
+
+
+            th.textContent =
+                value;
+
+
+            header.appendChild(th);
+
+        }
+    );
+
+
+    head.appendChild(header);
+
+
+    /* DATA */
+
+    for(
+        let i = 1;
+        i < data.length;
+        i++
+    ){
+
+        const row =
+            document.createElement("tr");
+
+
+        data[i].forEach(
+            function(value){
+
+                const td =
+                    document.createElement("td");
+
+
+                td.textContent =
+                    value;
+
+
+                row.appendChild(td);
+
+            }
+        );
+
+
+        body.appendChild(row);
+
+    }
+
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+document
+.getElementById("search")
+.addEventListener(
+    "input",
+    function(){
+
+        const text =
+            this.value
+            .toLowerCase()
+            .trim();
+
+
+        const rows =
+            document.querySelectorAll(
+                "#tableBody tr"
+            );
+
+
+        rows.forEach(
+            function(row){
+
+                const content =
+                    row.textContent
+                    .toLowerCase();
+
+
+                row.style.display =
+                    content.includes(text)
+                    ? ""
+                    : "none";
+
+            }
+        );
+
+    }
+);
+
+
+/* ==========================================
+   START
+========================================== */
+
+loadSheet();
+
+</script>
+
+</body>
+</html>
