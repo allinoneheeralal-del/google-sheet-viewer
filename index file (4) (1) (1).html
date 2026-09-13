@@ -1,0 +1,3060 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All In One General Store</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#FFFDD0;
+    color:#333;
+    font-family:Arial,sans-serif;
+    font-size:20px;
+    line-height:1.5;
+}
+
+header{
+    background:#0a7d45;
+    color:white;
+    text-align:center;
+    padding:20px 15px;
+}
+
+header h1{
+    font-size:32px;
+    margin-bottom:5px;
+}
+
+.hero{
+    text-align:center;
+    padding:20px 10px;
+}
+
+.hero img{
+    display:block;
+    width:90%;
+    max-width:700px;
+    height:auto;
+    margin:15px auto;
+    border-radius:10px;
+}
+
+section{
+    width:92%;
+    max-width:900px;
+    margin:20px auto 0;
+    padding:20px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 0 8px rgba(0,0,0,.08);
+}
+
+h2{
+    color:#0a7d45;
+    margin-bottom:15px;
+}
+
+h3{
+    margin-bottom:8px;
+}
+
+ul{
+    padding-left:25px;
+}
+
+.btn{
+    display:inline-block;
+    background:#25D366;
+    color:#fff;
+    text-decoration:none;
+    padding:12px 22px;
+    margin-top:15px;
+    border-radius:8px;
+    font-size:18px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th,
+td{
+    padding:7px;
+    font-size:18px;
+    border:1px solid #ddd;
+    text-align:center;
+    word-wrap:break-word;
+}
+
+th{
+    background:#4CAF50;
+    color:white;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+
+.product-img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:6px;
+}
+
+.search,
+.search-box{
+    width:92%;
+    max-width:600px;
+    margin:15px auto;
+}
+
+.search{
+    display:block;
+    padding:12px;
+    border:2px solid #0a7d45;
+    border-radius:8px;
+    font-size:18px;
+    text-align:center;
+}
+
+.search:focus{
+    outline:none;
+}
+
+.offer-strip{
+    padding:10px;
+    margin-top:10px;
+}
+
+img{
+    max-width:100%;
+}
+
+img[loading="lazy"]{
+    content-visibility:auto;
+}
+
+footer{
+    background:#0a7d45;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:30px;
+}
+
+.add-cart-btn{
+    background:#ff9800;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    padding:7px 10px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.add-cart-btn:active{
+    transform:scale(.96);
+}
+
+.wishlist-product-btn{
+    background:transparent;
+    border:none;
+    color:#333;
+    font-size:28px;
+    cursor:pointer;
+    padding:4px 8px;
+    line-height:1;
+}
+
+.wishlist-product-btn.added{
+    color:red;
+}
+
+.wishlist-product-btn:active{
+    transform:scale(.9);
+}
+
+#cartSection{
+    display:none;
+    width:92%;
+    max-width:900px;
+    margin:20px auto;
+    padding:20px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 0 8px rgba(0,0,0,.12);
+}
+
+#cartSection h2{
+    text-align:center;
+    color:#0a7d45;
+}
+
+.cart-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:12px 5px;
+    border-bottom:1px solid #ddd;
+}
+
+.cart-item-info{
+    flex:1;
+}
+
+.cart-item-name{
+    font-weight:bold;
+    color:#333;
+}
+
+.cart-item-price{
+    color:#0a7d45;
+    font-size:16px;
+}
+
+.cart-qty{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.qty-btn{
+    width:32px;
+    height:32px;
+    border:none;
+    border-radius:5px;
+    background:#0a7d45;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.qty-number{
+    min-width:30px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.delete-cart{
+    background:#e53935;
+    color:white;
+    border:none;
+    border-radius:5px;
+    padding:7px 9px;
+    cursor:pointer;
+}
+
+.cart-total{
+    text-align:right;
+    font-size:20px;
+    font-weight:bold;
+    color:#0a7d45;
+    margin-top:15px;
+}
+
+.clear-cart{
+    background:#e53935;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:7px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.close-cart{
+    background:#555;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:7px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.order-cart{
+    background:#25D366;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:7px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.add-cart-btn.added{
+    background:#0a7d45 !important;
+}
+
+/* =========================
+   PRODUCT SEARCH + CATEGORY
+========================= */
+
+.product-controls{
+    width:92%;
+    max-width:600px;
+    margin:15px auto;
+}
+
+.product-search,
+.category-select{
+    display:block;
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:2px solid #0a7d45;
+    border-radius:8px;
+    font-size:18px;
+    background:#fff;
+    color:#333;
+}
+
+.product-search{
+    text-align:center;
+}
+
+.product-search:focus,
+.category-select:focus{
+    outline:none;
+}
+
+@media(max-width:600px){
+
+    body{
+        font-size:18px;
+    }
+
+    header{
+        padding:18px 10px;
+    }
+
+    header h1{
+        font-size:27px;
+    }
+
+    section{
+        width:96%;
+        padding:15px;
+    }
+
+    th,
+    td{
+        font-size:15px;
+        padding:5px;
+    }
+
+    .product-img{
+        width:50px;
+        height:50px;
+    }
+
+    .btn{
+        font-size:16px;
+        padding:10px 16px;
+    }
+
+    .add-cart-btn{
+        font-size:13px;
+        padding:6px 7px;
+    }
+
+    .wishlist-product-btn{
+        font-size:24px;
+        padding:3px 6px;
+    }
+
+    #cartSection{
+        width:96%;
+        padding:15px;
+    }
+
+    .cart-item{
+        flex-wrap:wrap;
+    }
+
+    .cart-item-info{
+        min-width:55%;
+    }
+
+    .qty-btn{
+        width:30px;
+        height:30px;
+    }
+
+    .product-search,
+    .category-select{
+        font-size:16px;
+        padding:10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>All In One General Store</h1>
+<p>आपकी हर जरूरत का भरोसेमंद स्टोर</p>
+</header>
+
+<div class="search-box">
+<input
+    type="text"
+    id="search"
+    class="search"
+    placeholder="🔍 सामान खोजें..."
+    onkeyup="searchProduct()"
+    autocomplete="off"
+>
+</div>
+
+<nav class="navbar">
+
+<div class="logo">
+<img
+    src="assets/logo/logo.png"
+    alt="All In One General Store Logo"
+    width="80"
+    height="80"
+    loading="lazy"
+>
+</div>
+
+<div class="nav-icons">
+
+<a
+    href="#wishlistSection"
+    class="wishlist-btn"
+    onclick="showWishlist();return false;"
+>
+❤️ Wishlist
+<span id="wishlist-count">0</span>
+</a>
+
+<a
+    href="#cartSection"
+    class="cart-btn"
+    onclick="showCart()"
+>
+🛒 Cart
+<span id="cart-count">0</span>
+</a>
+
+<a href="login.html" class="login-btn">
+👤 Login
+</a>
+
+<a href="admin.html" class="admin-btn">
+👨‍💼 Admin
+</a>
+
+</div>
+</nav>
+
+<div style="margin-top:20px;text-align:center;">
+<a href="products.html" class="btn">
+🛍️ खरीदारी जारी रखें
+</a>
+</div>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h4>आपका अपना भरोसेमंद स्टोर</h4>
+
+<h2>
+ऑल इन वन
+<br>
+जनरल स्टोर
+</h2>
+
+<p>
+
+<a
+href="https://www.mediafire.com/view/kk8vke8m0i9wwll/kirana.jpg/file"
+target="_blank"
+rel="noopener"
+>
+• किराना •
+</a>
+
+<a
+href="https://www.mediafire.com/view/gebm2ilbg0c26l1/manihari.jpg/file"
+target="_blank"
+rel="noopener"
+>
+मणिहारी •
+</a>
+
+<a
+href="https://www.mediafire.com/view/gxeqinjc2oovjzo/Cold_Drinks.jpg/file"
+target="_blank"
+rel="noopener"
+>
+कोल्ड ड्रिंक्स •
+</a>
+
+<a
+href="https://www.mediafire.com/view/ovl3ynj51eqdbha/Electric_Items.jpg/file"
+target="_blank"
+rel="noopener"
+>
+इलेक्ट्रिकल आइटम •
+</a>
+
+<a
+href="https://www.mediafire.com/view/7npvsijsbwxgn7l/stationery_items.jpg/file"
+target="_blank"
+rel="noopener"
+>
+स्टेशनरी आइटम •
+</a>
+
+<br>
+
+उचित दाम • अच्छी गुणवत्ता • तेज़ सेवा
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="products.html" class="btn">
+🛍️ Shop Now
+</a>
+
+<a href="offers.html" class="btn">
+🎁 Today's Offers
+</a>
+
+</div>
+</div>
+</section>
+
+<section class="offer-strip">
+
+<marquee
+behavior="scroll"
+direction="left"
+>
+🎉 आज के शानदार ऑफर
+|
+₹500 से अधिक खरीदारी पर विशेष छूट
+|
+WhatsApp पर ऑर्डर करें
+|
+PhonePe Payment उपलब्ध
+</marquee>
+
+</section>
+
+<div style="margin-top:25px;text-align:center;">
+<a href="products.html" class="btn">
+🛍️ खरीदारी जारी रखें
+</a>
+</div>
+
+<section>
+
+<div id="home" class="main-page">
+
+<h1 style="text-align:center;color:#0a7d45;">
+पेज डिटेल्स
+</h1>
+
+<p>
+नीचे दिए लिंक पर क्लिक करके सीधे उस पेज पर जाएं:
+</p>
+
+<div class="links-container">
+
+<a href="#part4" class="section-link link-blue">
+🌟. विशेष विवरण
+</a>
+<br>
+
+<a href="#part6" class="section-link link-blue">
+📍. हमारा पता
+</a>
+<br>
+
+<a href="#part7" class="section-link link-blue">
+📦. आइटम केटेगरी
+</a>
+<br>
+
+<a href="#part8" class="section-link link-blue">
+🛍️. हमारे उत्पाद
+</a>
+<br>
+
+<a href="#part5" class="section-link link-blue">
+📱. WhatsApp order
+</a>
+<br>
+
+<a href="#part11" class="section-link link-blue">
+☎️ . सम्पर्क करें
+</a>
+<br>
+
+<a href="#part9" class="section-link link-blue">
+🤡. मनोरंजन
+</a>
+<br>
+
+<a href="#part10" class="section-link link-blue">
+💸. पेमेन्ट/भुगतान
+</a>
+<br>
+
+<a href="#part12" class="section-link link-blue">
+🕒. Store Timing
+</a>
+<br>
+
+<a href="#part13" class="section-link link-blue">
+❤️. Wishlist सारांश
+</a>
+<br>
+
+<a href="#part14" class="section-link link-blue">
+👤. ग्राहक विवरण
+</a>
+<br>
+
+<a href="#part15" class="section-link link-blue">
+👤. आइटम रेट लिस्ट
+</a>
+
+</div>
+</div>
+</section>
+
+<section id="part4">
+
+<h2 style="text-align:center;color:#0a7d45;">
+🌟 विशेष विवरण
+</h2>
+
+<p>
+<b>ऑल इन वन जनरल स्टोर</b><br><br>
+आपके विश्वास और सुविधा का विश्वसनीय स्थान।
+</p>
+
+<p>🌼</p>
+
+<p>
+हमारे यहाँ उच्च गुणवत्ता वाले किराना आइटम, मणिहारी सामान,
+कोल्ड ड्रिंक, इलेक्ट्रिक आइटम, स्टेशनरीआइटम एवं दैनिक उपयोग की सभी आवश्यक
+वस्तुएँ उचित मूल्य पर उपलब्ध हैं।
+</p>
+
+<p>🌼</p>
+
+<p>
+ग्राहकों को बेहतर सेवा, सही दाम और गुणवत्तापूर्ण उत्पाद
+उपलब्ध कराना हमारी प्राथमिकता है।
+</p>
+
+<p>🌼</p>
+
+<p>
+एक बार अवश्य पधारें और बेहतरीन सेवा का अनुभव करें।
+</p>
+
+<p>🌼</p>
+
+<p>
+<b>
+ऑल इन वन जनरल स्टोर — आपकी हर जरूरत का भरोसेमंद साथी। 🙏
+</b>
+</p>
+
+<hr>
+
+<h3>👤 प्रो.: राहुल भरत</h3>
+
+<p>
+📞 7627096404<br>
+📞 7014903912
+</p>
+
+<br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+</section>
+
+<section id="part6">
+
+<h2 style="text-align:center;color:#0a7d45;">
+📍 हमारा पता
+</h2>
+
+<p>
+हीरालाल भरत,<br>
+सणपा फाण्टा से गोगाजी मंदिर मार्ग
+</p>
+
+<a
+class="btn"
+target="_blank"
+href="https://maps.app.goo.gl/eYAHap8nvdgBQsHx7"
+>
+📍 Google Maps पर देखें
+</a>
+
+<br><br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+</section>
+
+<section id="part7">
+
+<h2 style="text-align:center;color:#0a7d45;">
+🛒 आइटम केटेगरी
+</h2>
+
+<ul>
+<li>किराना सामान</li>
+<li>मणिहारी आइटम</li>
+<li>कोल्ड ड्रिंक्स</li>
+<li>बिस्किट, चॉकलेट, नमकीन</li>
+<li>साबुन, सर्फ, शैम्पू</li>
+<li>हेयर ऑयल</li>
+<li>दैनिक उपयोग की वस्तुएँ</li>
+<li>इलेक्ट्रिक आइटम</li>
+<li>स्टेशनरी आइटम</li>
+<li>अन्य आइटम</li>
+</ul>
+
+<br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+</section>
+
+<section id="part8">
+
+<h2 style="text-align:center;color:#0a7d45;">
+🛒 हमारे यहाँ उपलब्ध सामान
+</h2>
+
+<p>∆</p>
+
+<div class="product">
+<h3>किराना सामान</h3>
+<p>
+दाल, पापङ, चावल, मसाले, नमक, मिर्च, हल्दी, जीरा, लहसुन, तेल, चाय,
+कॉफी, इलायची, शक्कर, चीनी, माचिस, अगरबती, साबूदाना, सोमा, सेवईयां,
+बिस्किट, चॉकलेट, कुरकुरे, सर्फ आदि।।
+</p>
+</div>
+
+<p>∆</p>
+
+<div class="product">
+<h3>मणिहारी सामान</h3>
+<p>
+चूङियां, पाटला, तोङिया, विंटियां, कानों के टोप्स, बकल, बाल पिनों,
+बाल पट्टो, छोटी रबङ, लेडिज बटुआ, लेडिज रूमाल, आईब्रो पेंसिल,
+मांग सिंदूर, समीज, बोडिस, सड्डी, चूंदङी की तार, हाथों के मोजे,
+अंगाठिया, साबुन, शैम्पू, पाऊडर, क्रिम, कंघा, बिंदी, हेयर ऑयल,
+मेहन्दी आदि। और अन्य घरेलू उपयोग की वस्तुएँ।
+</p>
+</div>
+
+<p>∆</p>
+
+<div class="product">
+<h3>कोल्ड ड्रिंक्स</h3>
+<p>
+पेप्सी, पानी बोतल, कोल्ड ड्रिंक, मिनरल वाटर, जूस, लस्सी, ठण्डा एवं
+अन्य पेय पदार्थ। और अन्य रिफ्रेशमेंट उपलब्ध।
+</p>
+</div>
+
+<p>∆</p>
+
+<div class="product">
+<h3>इलेक्ट्रिक आइटम</h3>
+<p>
+बल्ब, होल्डर, प्लग, टेपगट्टी, पिन एवं अन्य इलेक्ट्रिक सामान।
+</p>
+</div>
+
+<p>∆</p>
+
+<div class="product">
+<h3>बिस्किट, चॉकलेट, नमकीन एवं स्नेक्स</h3>
+<p>
+पारले, मोनाको, टवन्टी-टवन्टी, ब्रिटानिया, सनफीस्ट एवं अन्य ब्रांड।
+कैडबरी, टॉफी, चॉकलेट, नमकीन, कुरकुरे, चिप्स, भुजिया एवं अन्य स्नैक्स।
+बच्चों की पसंदीदा वस्तुएँ।
+</p>
+</div>
+
+<p>∆</p>
+
+<div class="product">
+<h3>स्टेशनरीआइटम</h3>
+<p>
+कोपी, पेन, पेंसिल, रबङ, चार्ट पेपर आदि।
+</p>
+</div>
+
+<p>∆</p>
+
+<div class="product">
+<h3>अन्य आइटम</h3>
+<p>
+ब्लेड, रेजर, टूथ ब्रश, टूथ पेस्ट, कांच, कंघा, सुईयां, गटियां, डोरा,
+चाकू, चाय छलनी, पानी छलनी, कपङा धोने का ब्रश, बर्तन धोने की जाली,
+सिलाई मशीन तेल, मेगी, टोस, ईनो, जलजीरा, सुपारी, फेविक्विक,
+लक्ष्मण रेखा आदि।
+</p>
+</div>
+
+<p>∆</p>
+
+<div class="product">
+<h3>दैनिक उपयोग का सामान</h3>
+<p>
+घर में रोज़ काम आने वाली सभी आवश्यक वस्तुएँ उपलब्ध।
+</p>
+</div>
+
+<br>
+
+<h5 style="text-align:center;color:red;">
+नोट:- जो सामान उपलब्ध होगा वही दिया जायेगा।
+</h5>
+
+<br>
+<hr>
+
+<div class="cart-actions">
+
+<button class="cart-btn" onclick="addAllToCart()">
+🛒 सभी को Cart में जोड़ें
+</button>
+
+<button class="remove-btn" onclick="clearWishlist()">
+🗑️ Wishlist खाली करें
+</button>
+
+</div>
+
+<button class="whatsapp-btn" onclick="sendWishlistToWhatsApp()">
+WhatsApp पर Wishlist भेजें
+</button>
+
+</div>
+
+<br><br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+</section>
+
+<section id="part5">
+
+<div class="container">
+
+<div class="delivery-box">
+
+<h2 style="text-align:center;color:#0a7d45;">
+WhatsApp Order
+</h2>
+
+<p>
+WhatsApp पर ऑर्डर करें और उपलब्ध सामान खरीदने का लाभ उठाएँ।
+</p>
+
+<br>
+
+<a
+href="https://wa.me/917627096404"
+target="_blank"
+class="delivery-btn"
+>
+WhatsApp-1 पर ऑर्डर करें
+</a>
+
+<br><br>
+
+<a
+href="https://wa.me/917014903912"
+target="_blank"
+class="delivery-btn"
+>
+WhatsApp-2 पर ऑर्डर करें
+</a>
+
+</div>
+</div>
+
+<br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+</section>
+
+<section id="part11">
+
+<h2 style="text-align:center;color:#0a7d45;">
+📞 संपर्क करें
+</h2>
+
+<br>
+
+<p>
+किसी भी जानकारी, ऑर्डर या सहायता के लिए हमसे संपर्क करें।
+</p>
+
+<p>🌼</p>
+
+<p>
+<a href="tel:+917627096404" class="call-btn">
+📞 7627096404
+</a>
+</p>
+
+<p>
+<a href="tel:+917014903912" class="call-btn">
+📞 7014903912
+</a>
+</p>
+
+<a class="btn" href="https://wa.me/917627096404">
+WhatsApp पर सम्पर्क करें
+</a>
+
+<a class="btn" href="https://wa.me/917014903912">
+WhatsApp पर सम्पर्क करें
+</a>
+
+<br><br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+</section>
+
+<section id="part10">
+
+<h2 style="text-align:center;color:#0a7d45;">
+💳 ऑनलाइन PhonePe व केश पैमेन्ट।
+</h2>
+
+<p>
+<b>हमारे यहाँ PhonePe से भुगतान स्वीकार किया जाता है।</b>
+</p>
+
+<p>
+<img src="https://www.mediafire.com/view/puwkq97v4761rz1/Screenshot_20260720_132557.jpg/file">
+</p>
+
+<div>
+
+<a href="https://www.mediafire.com/view/puwkq97v4761rz1/Screenshot_20260720_132557.jpg/file">
+"PhonePe QR Code"
+</a>
+
+<h3>📱 Scan & Pay</h3>
+
+</div>
+
+<p>
+QR Code स्कैन करके सुरक्षित, तेज़ एवं आसानी से भुगतान करें।
+</p>
+
+<div>
+
+<p>
+<b>खाताधारक:</b><br>
+HEERA LAL MEGHWAL
+</p>
+
+<br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+</section>
+
+<section id="part9">
+
+<h1 style="text-align:center;color:#0a7d45;">
+मनोरंजन
+</h1>
+
+<p>
+
+<a href="https://www.windy.com/file" target="_blank">
+मौसम जानकारी
+</a>
+
+<br>
+
+<a href="https://www.yupptv.com/file" target="_blank">
+टेलिवीजन
+</a>
+
+<br>
+
+<a href="https://akashvani.gov.in/radio/live.php" target="_blank">
+रेडियो
+</a>
+
+<br>
+
+<a href="https://poki.com/hi" target="_blank">
+गेम संग्रह A
+</a>
+
+,
+<a href="https://www.crazygames.com/" target="_blank">
+B
+</a>
+,
+<a href="https://www.msn.com/en-in/play">
+C
+</a>
+
+<br><br>
+
+<h2 style="text-align:center;color:#0a7d45;">
+WI-FI available
+</h2>
+
+<p>
+<b>नोट:- वाईफाई प्रति घण्टा ₹ 5/-</b>
+</p>
+
+<br>
+
+<h2 style="text-align:center;color:#0a7d45;">
+रिचार्ज & पैमेन्ट
+</h2>
+
+<b>
+मोबाइल रिचार्ज, टीवी रिचार्ज व लाइट बिल एवं मनी ट्रांसफर किया जाता हैं।
+</b>
+
+<br><br>
+
+<h2 style="text-align:center;color:#0a7d45;">
+लाईव केम
+</h2>
+
+<p>
+
+<a href="https://drive.google.com/file/d/1jD-lctzB2oR04aAWl_7ueulw2CxBQ-5I/view?usp=drivesdk/file" target="_blank">
+Cam-1 N
+</a>
+
+<br>
+
+<a href="https://drive.google.com/file/d/1jD-lctzB2oR04aAWl_7ueulw2CxBQ-5I/view?usp=drivesdk/file" target="_blank">
+Cam-2 S
+</a>
+
+<br>
+
+<a href="https://drive.google.com/file/d/1jD-lctzB2oR04aAWl_7ueulw2CxBQ-5I/view?usp=drivesdk/file" target="_blank">
+Cam-3 E
+</a>
+
+<br>
+
+<a href="https://drive.google.com/file/d/1jD-lctzB2oR04aAWl_7ueulw2CxBQ-5I/view?usp=drivesdk/file" target="_blank">
+Cam-4 E
+</a>
+
+<br>
+
+<a href="https://drive.google.com/file/d/1jD-lctzB2oR04aAWl_7ueulw2CxBQ-5I/view?usp=drivesdk/file" target="_blank">
+Cam-5 W
+</a>
+
+<br>
+
+<a href="https://drive.google.com/file/d/1jD-lctzB2oR04aAWl_7ueulw2CxBQ-5I/view?usp=drivesdk/file" target="_blank">
+Indoor Cam
+</a>
+
+<br><br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+</section>
+
+<section id="part12">
+
+<div class="container">
+
+<div class="section-header">
+
+<span class="section-badge">
+🕒 STORE TIMING
+</span>
+
+<h2>दुकान खुलने का समय</h2>
+
+</div>
+
+<div class="timing-box">
+
+<p><strong>प्रतिदिन</strong></p>
+
+<h3>
+सुबह 7:00 बजे से रात 9:00 बजे तक
+</h3>
+
+<br>
+
+<p>
+समय आवश्यकता अनुसार बदला जा सकता है।
+</p>
+
+<br>
+
+<h5 style="text-align:center;color:red;">
+नोट- अत्यावश्यक सामान की जरूरत होने पर हर समय उपलब्ध।
+</h5>
+
+</div>
+</div>
+
+<br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+</section>
+
+<section class="customer-review-section">
+
+<div class="container">
+
+<div class="section-header">
+
+<span class="section-badge">
+⭐ CUSTOMER REVIEWS
+</span>
+
+<h1 style="text-align:center;color:#0a7d45;">
+हमारे ग्राहकों की राय
+</h1>
+
+<p>
+ग्राहकों का विश्वास ही हमारी सबसे बड़ी पहचान है।
+</p>
+
+</div>
+</div>
+
+<br>
+
+<div class="review-grid">
+
+<div class="review-card">
+
+<div class="stars">
+⭐⭐⭐⭐⭐
+<br>
+
+<p>
+बहुत अच्छी दुकान है। सभी सामान उचित कीमत पर मिल जाता है।
+</p>
+
+<h4>★★★★★</h4>
+
+</div>
+
+<br>
+
+<div class="review-card">
+
+<div class="stars">
+⭐⭐⭐⭐⭐
+</div>
+
+<p>
+WhatsApp पर ऑर्डर करने की सुविधा बहुत अच्छी लगी।
+</p>
+
+<h4>★★★★★</h4>
+
+</div>
+
+<br>
+
+<div class="review-card">
+
+<div class="stars">
+⭐⭐⭐⭐⭐
+</div>
+
+<p>
+व्यवहार अच्छा है और सामान की गुणवत्ता भी बेहतरीन है।
+</p>
+
+<h4>★★★★★</h4>
+
+</div>
+
+</div>
+</div>
+
+</section>
+
+<section class="store-highlights">
+
+<div class="container">
+
+<div class="highlight-grid">
+
+<div class="highlight-box">
+<h3>1000+</h3>
+<p>संतुष्ट ग्राहक</p>
+</div>
+
+<br>
+
+<div class="highlight-box">
+<h3>500+</h3>
+<p>उपलब्ध प्रोडक्ट</p>
+</div>
+
+<br>
+
+<div class="highlight-box">
+<h3>Best Quality</h3>
+<p>उत्तम गुणवत्ता</p>
+</div>
+
+<br>
+
+<div class="highlight-box">
+<h3>Fast Service</h3>
+<p>तेज़ सेवा</p>
+</div>
+
+</div>
+</div>
+
+</section>
+
+<section id="part13">
+
+<div class="cart-summary">
+
+<h1 style="text-align:center;color:#0a7d45;">
+❤️ Wishlist सारांश
+</h1>
+
+<div class="summary-row">
+
+<span>
+कुल पसंदीदा प्रोडक्ट
+</span>
+
+<strong id="wishlistCount">
+0
+</strong>
+
+</div>
+
+<hr>
+
+<div class="cart-actions">
+
+<button class="cart-btn" onclick="addAllToCart()">
+🛒 सभी को Cart में जोड़ें
+</button>
+
+<button class="remove-btn" onclick="clearWishlist()">
+🗑️ Wishlist खाली करें
+</button>
+
+</div>
+
+<div class="cart-actions" style="margin-top:15px;">
+
+<button
+class="whatsapp-btn"
+onclick="sendWishlistToWhatsApp()"
+>
+WhatsApp पर Wishlist भेजें
+</button>
+
+</div>
+
+<div style="margin-top:25px;text-align:center;">
+
+<a href="products.html" class="btn">
+🛍️ खरीदारी जारी रखें
+</a>
+
+</div>
+
+</div>
+
+<br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+</section>
+
+<section id="part14">
+
+<div class="modal-body">
+
+<form id="customerForm">
+
+<div class="mb-3">
+
+<h1 style="text-align:center;color:#0a7d45;">
+ग्राहक विवरण
+</h1>
+
+<label class="form-label fw-bold">
+आपका नाम *
+</label>
+
+<input
+type="text"
+id="custName"
+class="form-control"
+placeholder="कस्टमर का नाम लिखें"
+required
+>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label fw-bold">
+मोबाइल नंबर *
+</label>
+
+<input
+type="tel"
+id="custPhone"
+class="form-control"
+placeholder="10 अंकों का नंबर"
+required
+>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label fw-bold">
+पूरा पता (Delivery Address) *
+</label>
+
+<textarea
+id="custAddress"
+class="form-control"
+rows="2"
+placeholder="मकान नंबर, गली, शहर, पिनकोड"
+required
+></textarea>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label fw-bold">
+पेमेंट का तरीका चुनें *
+</label>
+
+<div class="form-check">
+
+<input
+class="form-check-input"
+type="radio"
+name="paymentMethod"
+id="payCOD"
+value="Cash on Delivery (COD)"
+checked
+onclick="toggleQR(false)"
+>
+
+<label class="form-check-label" for="payCOD">
+📦 Cash on Delivery (COD)
+</label>
+
+</div>
+
+<div class="form-check">
+
+<input
+class="form-check-input"
+type="radio"
+name="paymentMethod"
+id="payOnline"
+value="Online UPI Payment"
+onclick="toggleQR(true)"
+>
+
+<label class="form-check-label" for="payOnline">
+💳 Online UPI / QR Code स्कैन
+</label>
+
+</div>
+
+</div>
+
+<div
+id="qrContainer"
+class="p-3 mb-3 text-center rounded qr-box"
+style="display:none;"
+>
+
+<p class="text-danger small mb-2 fw-semibold">
+👇 नीचे दिए गए QR कोड को स्कैन करके पेमेंट करें और स्क्रीनशॉट संभाल कर रखें।
+</p>
+
+<img
+src="https://drive.google.com/file/d/1RBNV0svA6JjGUFrwjw2pLH_uJjv_j8N2/view?usp=drivesdk"
+alt="Payment QR Code"
+>
+
+<a href="https://drive.google.com/file/d/1RBNV0svA6JjGUFrwjw2pLH_uJjv_j8N2/view?usp=drivesdk">
+Scan QR Code
+</a>
+
+<div class="fw-bold text-dark fs-5">
+टोटल अमाउंट:
+<span id="modalTotalAmount">₹0</span>
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+type="button"
+class="btn btn-secondary"
+>
+रद्द करें
+</button>
+
+<button
+type="button"
+class="btn btn-success fw-bold"
+onclick="confirmAndSend()"
+>
+WhatsApp पर ऑर्डर सबमिट करें 🚀
+</button>
+
+</div>
+
+<br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+</section>
+
+<script>
+function toggleQR(show){
+
+const qrBox=document.getElementById("qrContainer");
+
+if(qrBox){
+    qrBox.style.display=show?"block":"none";
+}
+
+}
+
+function confirmAndSend(){
+
+let name=document.getElementById("custName").value.trim();
+let phone=document.getElementById("custPhone").value.trim();
+let address=document.getElementById("custAddress").value.trim();
+
+let payment=document.querySelector(
+'input[name="paymentMethod"]:checked'
+);
+
+if(!name || !phone || !address){
+
+alert("कृपया सभी जरूरी जानकारी भरें!");
+return;
+
+}
+
+if(!payment){
+
+alert("कृपया पेमेंट मोड चुनें!");
+return;
+
+}
+
+payment=payment.value;
+
+let cart=getCart();
+
+if(!cart.length){
+
+alert("🛒 Cart खाली है।");
+return;
+
+}
+
+let message=
+`🛍️ *नया स्टोर ऑर्डर!*
+
+---------------------------
+`;
+
+let total=0;
+
+cart.forEach((item,i)=>{
+
+const amount=
+Number(item.price)*Number(item.qty);
+
+total+=amount;
+
+message+=
+`${i+1}. ${item.name}
+रेट: ₹${item.price}
+मात्रा: ${item.qty}
+कुल: ₹${amount}
+
+`;
+
+});
+
+message+=
+`---------------------------
+💰 *कुल बिल:* ₹${total}
+💳 *पेमेंट मोड:* ${payment}
+
+👤 *ग्राहक की जानकारी*
+👤 *नाम:* ${name}
+📞 *फोन:* ${phone}
+📍 *पता:* ${address}
+
+---------------------------
+कृपया मेरा ऑर्डर कन्फर्म करें।`;
+
+let whatsappNumber="917627096404";
+
+let whatsappUrl=
+`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+window.open(whatsappUrl,"_blank");
+
+}
+</script>
+
+<section id="part15">
+
+<h2 style="text-align:center;color:#0a7d45;">
+🛍️ प्रोडक्ट रेट लिस्ट
+</h2>
+
+<!-- =========================
+     PRODUCT SEARCH + CATEGORY
+========================= -->
+
+<div class="product-controls">
+
+<input
+type="search"
+id="productSearch"
+class="product-search"
+placeholder="🔍 सामान खोजें..."
+autocomplete="off"
+>
+
+<select
+id="categorySelect"
+class="category-select"
+>
+<option value="सभी">
+📦 सभी कैटेगरी
+</option>
+</select>
+
+</div>
+
+<!-- WISHLIST -->
+
+<div id="wishlistSection" style="display:none">
+
+<h3>❤️ मेरी Wishlist</h3>
+
+<div id="wishlistItems"></div>
+
+</div>
+
+<!-- CART -->
+
+<div id="cartSection" style="display:none">
+
+<h3>🛒 मेरा Cart</h3>
+
+<div id="cartItems"></div>
+
+<div class="cart-total">
+कुल राशि: ₹<span id="cartTotal">0</span>
+</div>
+
+<button
+class="clear-cart"
+onclick="clearCart()"
+>
+🗑️ Cart खाली करें
+</button>
+
+<button
+class="order-cart"
+onclick="sendCartToWhatsApp()"
+>
+📲 WhatsApp पर ऑर्डर करें
+</button>
+
+<button
+class="close-cart"
+onclick="hideCart()"
+>
+✖️ बंद करें
+</button>
+
+</div>
+
+<div class="table-responsive">
+
+<table id="productTable">
+
+<thead>
+
+<tr>
+
+<th>S.No.</th>
+<th>प्रोडक्ट का नाम</th>
+<th>रेट (₹)</th>
+<th>Wishlist</th>
+<th>Cart</th>
+
+</tr>
+
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+</div>
+
+<br>
+
+<a href="#home" class="back-to-top">
+↩️ मुख्य पेज पर वापस जाएं
+</a>
+
+<script>
+
+/* =========================
+   PRODUCT DATA SYSTEM
+========================= */
+
+let products=[];
+
+function category(categoryName,items){
+
+items.forEach(item=>{
+
+products.push([
+item[0],
+item[1],
+categoryName
+]);
+
+});
+
+}
+
+/* === किराना === */
+category("किराना",[
+["शक्कर",80],
+["चाय नारायणपुर 250g",90],
+["चाय तूफान 250g",80],
+["कॉफी पुड़ी",10],
+["शाकर (मिश्री)",120],
+["देशी शक्कर",70],
+["ओला लाडू",120],
+["तेल बोतल",110],
+["मिर्च",410],
+["पिसी मिर्च",430],
+["हल्दी 250g",60],
+["लछण",200],
+["नमक",10],
+["चावल",65],
+["सोमा थेली",50],
+["हलवा नमकीन थेली",40],
+["हलवा नमकीन थेली",70],
+["पापङ थेली",50],
+["सब्जी वाली जाडी सेव थेली",35],
+["मोटा भुजिया (मारवङी खोखा)",60],
+["पीला चना",150],
+["मूंगफली",180],
+["माचिस",1],
+["माचिस पेकेट",10],
+["अगरबती",10],
+["मेथी",80],
+["गुड़",50],
+["नारियल",230],
+["सूजी",55],
+["सोयाबिन",110],
+["चना दाल",100],
+["मसूर दाल",100],
+["आलू पापड़ी",160],
+["काली मिर्च 100g",95],
+["इलायची प्रति नग",2],
+["अजवाइन",360],
+["साबूदाना",120],
+["आखा धोणा",190],
+["काबुली चना",150],
+["मेट (मुल्तानी मिट्टी)",12],
+["काजू",950],
+["किसमिस",530]
+
+]);
+
+
+/* === बिस्किट === */
+category("बिस्किट",[
+["CNC बिस्किट",5],
+["नारियल बिस्किट",5],
+["पारले जी बिस्किट",5],
+["क्रिम बिस्किट",5],
+["टवंटी टवंटी बिस्किट",5],
+["मेजिक रेड बिस्किट",5],
+["मेजिक ब्ल्यू बिस्किट",5],
+["क्लासिक क्रिम बिस्किट",5],
+["पार्टनर वेफर्स",5],
+["वेफिलो वेफर बिस्किट",5],
+["क्रेकजेक बिस्किट",5]
+]);
+
+
+/* === नमकीन === */
+category("नमकीन",[
+["बीकाजी नमकीन",10],
+["बीकाजी नमकीन",5],
+["सिंग भुजिया",5],
+["श्री हरि मिक्सर",5],
+["श्रीहरि आलू सेव",5],
+["श्रीहरि गांठिंया",5],
+["श्रीहरि (रतलामी) नमकीन",5],
+["श्री हरि चना जीरा मसाला",5],
+["श्री हरि निम्बू सिंग भुजिया",5],
+["श्री हरि खट्टा मीठा मिक्स",5],
+["श्री हरि मूंग दाल",5],
+["फरारी सेवङा",5],
+["पापङी फाफङा (गांठिंया)",5],
+["मिक्सर नमकीन",5],
+["हरा मटर",5],
+["बालाजी आलू सेव",5],
+["बालाजी गांठिंया",5],
+["बालाजी तीखा मीठा मिक्स",5]
+]);
+
+
+/* === कोल्ड ड्रिंक === */
+category("कोल्ड ड्रिंक",[
+["पेप्सी पाउस",1],
+["पानी बोतल",10],
+["केम्पा ज्यूस हरा",10],
+["रबड़ी 1 रुपये वाली",1],
+["स्प्राइट",40],
+["फेन्टा",40],
+["माउन्टेन ड्यू",45],
+["नींबू पानी ठण्डा",10],
+["केम्पा ज्यूस नारंगी",10],
+["केम्पा कोला",10],
+["केम्पा स्ट्रींग",10],
+["रसकिक निम्बू पानी",10],
+["रसकिक आम ज्यूस",10],
+["फेन्टा",100]
+]);
+
+
+/* === कुरकुरे === */
+category("कुरकुरे",[
+["घङी वाला कुरकुरा",5],
+["मसाला सेव मुरमुरा",5],
+["आलू सेव",5],
+["मसाला गांठिंया",5],
+["बिस्किट वाला",5],
+["बिस्कुट बॉक्स",5],
+["बेलुन कुरकुरा",5],
+["बिग बेलुन",5],
+["गुब्बारे वाला",5],
+["श्री हरि कोरस जाली",5],
+["श्री हरि सोया चिप्स",5],
+["आमरस",5],
+["पानीपुङी",5],
+["गोल्डन समोसा",5],
+["हेड फोन",5],
+["मेक अप",5],
+["सेव समोसा",5],
+["टोय वर्ल्ड",5],
+["लाइट वाला",5],
+["सिक्का पार्टी कुरकुरा",5],
+["चॉकलेट बॉय",5],
+["चिप्स",5],
+["इनाम वाला",5],
+["मोदी का जादू",5],
+["चलती का नाम गाङी",5],
+["बच्चों का एटीएम",5],
+["बालाजी व्हील मसाला",5],
+["रोणा शेरमा",5],
+["टनाटन",5],
+["साल्टड रिफिल",5],
+["पोपकोर्न कुरकुरा",5],
+["फन पफ्स",5],
+["सिक्का पार्टी",5],
+["केस्अप कटोरी",5],
+["जिग जेग",5],
+["पापा की परी",5],
+["रस रसीला",5],
+["जिपी फ्लेमिन चिली",5],
+["टोमेटो कटोरी",5],
+["आजा मेरी गाङी में बेठ जा",5],
+["पिटारा मसाला सेव मुरमुरा",5],
+["पानी पुरी",5],
+["दुनिया हिला देंगे",5],
+["GKG जीरा पापड़",10],
+["GKG नींबू भुजिया",10],
+["सोया चिप्स",5],
+["सोया स्टिक",5],
+["मिस्टर इंडिया",5],
+["की चैन",5],
+["क्रेडिट कार्ड",5],
+["लाइट वाला",5],
+["फिंगर चिप्स",5]
+
+]);
+
+
+
+/* === स्टेशनरी === */
+category("स्टेशनरी",[
+["सीसा पेन",5],
+["रबङ (इरेजर)",5],
+["पेन",3],
+["पेन",5],
+["चार्पनर",5],
+["चोकङी कोपी",10],
+["कोपी एक लाईन",10],
+["कोपी एक लाईन",20],
+["कोपी दो लाईन",10],
+["कोपी दो लाईन",20],
+["कोपी चार लाईन",10],
+["कोपी चार लाईन",20],
+["चार्ट पेपर",10],
+["गोंद",20],
+["व्हाइटनर",25],
+["हाईलाइटर",25],
+["फ्लेग",10],
+["मार्कर",20]
+]);
+
+
+/* === मणिहारी === */
+category("मणिहारी",[
+["टिलियों पता",10],
+["टिलियों पता",5],
+["टिलीयों की राल डब्बी",5],
+["मांग भरणकी",10],
+["मांग भरने की ट्यूब",10],
+["लेडिज बटुआ",10],
+["लेडिज रूमाल",10],
+["लेडिज हाथों के मोजे",50],
+["मेहन्दी कोण",10],
+["मेहन्दी कोण",5],
+["आई लाईनर",10],
+["टीलियों की राल डब्बी",10],
+["बटर फ्लाई बकल",10],
+["पाटला",60],
+["पाटला बङा",60],
+["पाटला लाल कलर का",60],
+["मूठिया",80],
+["मूठिया",60],
+["छोटा मूठिया",20],
+["ओम",25],
+["छोटा ओम",20],
+["बङा ओम",25],
+["फेन्सी ओम",40],
+["छोटी विन्टी",10],
+["विन्टी",20],
+["विन्टी",25],
+["विटीं बड़ी",20],
+["कानो की झूबरियों",80],
+["कानो की झूबरियों",60],
+["कानो की झूबरियों",50],
+["कानों के टॉप्स",80],
+["बाल पट्टो",10],
+["बाल पट्टो (काला)",10],
+["बाल पट्टो (रंगीन)",10],
+["बकल",10],
+["बकल",20],
+["छोटी बाल पिनों",5],
+["बाल पिनों",5],
+["बाल पिनों",10],
+["चोटी रबङ",5],
+["चोटी रबङ",10],
+["तीबों",1],
+["छोटी सुईयां",5],
+["सुईयां",5],
+["बङी सुईयां",5],
+["मशीन की सुईयां",15],
+["चूंदङी की तार",5],
+["चूंदङी की तार",10],
+["चूंदङी की तार",20],
+["समीज",60],
+["बोडिज",60],
+["चड्डी",60],
+["चड्डी",30],
+["तोड़िया",200],
+["तोड़िया",100],
+["क्रिम",40],
+["चूड़ियां",80],
+["चूड़ियां",60],
+["बिछूड़ियां",10],
+["बिछूड़ियां",40],
+["गले की जाली",5]
+]);
+
+
+/* === इलेक्ट्रिक === */
+category("इलेक्ट्रिक",[
+["बल्ब 100 वाट",15],
+["एलईडी बल्ब",40],
+["पिन",10],
+["वायर प्रति फुट",3],
+["वायर प्रति फुट",5],
+["होल्डर",15],
+["रिमोट सेल",10],
+["पेंसिल सेल",10],
+["टेप गट्टी",10],
+["फेविक्विक",5]
+]);
+
+
+/* === सुपारी === */
+category("सुपारी",[
+["एलसी सुपारी",5],
+["प्रितम सुपारी",1],
+["सौंफ सुपारी",5],
+["पास-पास सुपारी",5],
+["मिनाक्षी सुपारी",10],
+["मिनाक्षी सुपारी",5],
+["मिनाक्षी गोंद सुपारी",10],
+["M M गोंद सुपारी",5],
+["आंटी सुपारी",5],
+["चुटकी सुपारी",1],
+["माही सुपारी",1],
+["टोलो सोंफ सुपारी",1],
+["मधुर सोंफ",1],
+["चांद तारा",1],
+["खट्टम खट्टा",1],
+["खटोरी",1],
+["इमली मोदक",1],
+["बोर चटनी",1],
+["चमकती चापट",1],
+["पंजाबी संतरा",1]
+]);
+
+
+/* === चाकलेट गोली === */
+category("चाकलेट/गोली",[
+["कंचन पेड़ा",1],
+["चोको गोल्ड (चॉकलेट)",5],
+["पिपरमेंट चाकलेट",2],
+["जेम चोकलेट",1],
+["किसमी चॉकलेट",1],
+["फ्रेश फ्रूट चॉकलेट",1],
+["चाकलेट इकलेर",1],
+["चाकलेट दूध मलाई",1],
+["चाकलेट कच्ची केरी",1],
+["चाकलेट किसमी",1],
+["चाकलेट फ्रेश फ्रूट",1],
+["चोकलेट माई मेंगो",1],
+["नारियल चोकलेट",1],
+["मावा अंजीर चोकलेट",1],
+["राजभोग चोकलेट",1],
+["सोन पापङी",2.5],
+["पोदिना गोली",1],
+["रंगिला लाडू",1],
+["निंजा नाइफ",5],
+["डबल टेटू",1],
+["फ्रूटो जेली",1],
+["बोर चटनी लाडू",1]
+
+]);
+
+
+/* === अन्य === */
+category("अन्य",[
+["जल जीरा",1],
+["सतमोला",1],
+["आंवला पुड़ी",1],
+["चूरण",1],
+["काला अंगूर",1],
+["आम पाचक",1],
+["आम पाचक",5],
+["इमली कप वाली",1],
+["इमली फॉइल पेपर में लपेटी हुई",1],
+["इनाम चोरी का माल",5],
+["इनाम भूत बंगला",5],
+["इनाम चाइना गोल्ड",5]
+]);
+
+
+/* === तम्बाकू उत्पाद === */
+category("तम्बाकू उत्पाद",[
+["धारीवाल",10],
+["मिराज",10],
+["गणेश",10],
+["तानसेन",5],
+["विमल",5],
+["नजर",5],
+["बेगम",10],
+["जाफरी",10],
+["बीड़ी देसाई",30],
+["बीङी लंगर",30],
+["गोल्ड फ्लेक सिगरेट",15],
+["गोल्ड फ्लेक सिगरेट पेकेट",140],
+["फोर स्कव्यर सिगरेट",10],
+["फोर स्कव्यर सिगरेट पेकेट",90],
+["चूना ट्यूब",2]
+]);
+
+
+/* === जनरल उत्पाद === */
+category("जनरल आइटम",[
+["एक्सल सर्फ",10],
+["यूनिलेक्स सर्फ 1 kg",50],
+["जेली वाला सर्फ",130],
+["सर्फ़ excel साबुन",10],
+["लाइफ बोय साबुन",10],
+["लक्स साबुन",10],
+["शंकर साबुन",20],
+["तेल सेवन ओयल",45],
+["शक्ति आंवला हेयर ऑयल",10],
+["शक्ति आंवला हेयर ऑयल",20],
+["ब्लेड",3],
+["ब्लेड पाकेट",25],
+["टोस पेकेट",10],
+["मेगी",10],
+["हेयर डाई",25],
+["फेयर & लवली क्रिम",20],
+["22 नम्बर पाउडर",50],
+["पाउडर",10],
+["कंघा",10],
+["कंघी",15],
+["कांच",10],
+["कांच",20],
+["मशीन का तेल",25],
+["पानी छलनी",10],
+["चाय छलनी",10],
+["बर्तन धोने का साबुन",25],
+["बर्तन धोने की जाली",10],
+["कपङा धोने का ब्रश",10],
+["कपङा धोने का ब्रश",25],
+["क्लोज अप",20],
+["कोलगेट",20],
+["टूथ ब्रूश",15],
+["कपङों के क्लिप (तणी वाले)",15],
+["क्लीनिक प्लस शेम्पू",1],
+["डव शेम्पू",2],
+["ग्लो & लवली",20],
+["चाकू",10],
+["लक्ष्मण रेखा",25]
+]);
+
+/* =========================
+   WISHLIST
+========================= */
+
+function getWishlist(){
+
+return JSON.parse(
+localStorage.getItem("product_wishlist")||"[]"
+);
+
+}
+
+function saveWishlist(list){
+
+localStorage.setItem(
+"product_wishlist",
+JSON.stringify(list)
+);
+
+}
+
+function toggleWishlist(index){
+
+const [name,price]=products[index];
+
+let list=getWishlist();
+
+const found=list.findIndex(
+x=>x.name===name &&
+Number(x.price)===Number(price)
+);
+
+if(found>-1){
+
+list.splice(found,1);
+
+}else{
+
+list.push({
+name:name,
+price:price
+});
+
+}
+
+saveWishlist(list);
+
+updateWishlistButtons();
+updateWishlistCount();
+renderWishlist();
+
+}
+
+function updateWishlistButtons(){
+
+const list=getWishlist();
+
+products.forEach((item,i)=>{
+
+const btn=document.getElementById(
+"wishlistBtn-"+i
+);
+
+if(!btn)return;
+
+const found=list.some(
+x=>x.name===item[0] &&
+Number(x.price)===Number(item[1])
+);
+
+btn.textContent=found?"❤️":"♡";
+
+btn.classList.toggle(
+"added",
+found
+);
+
+});
+
+}
+
+function updateWishlistCount(){
+
+const count=getWishlist().length;
+
+const top=document.getElementById(
+"wishlist-count"
+);
+
+if(top){
+top.textContent=count;
+}
+
+const summary=document.getElementById(
+"wishlistCount"
+);
+
+if(summary){
+summary.textContent=count;
+}
+
+}
+
+function renderWishlist(){
+
+const section=document.getElementById(
+"wishlistSection"
+);
+
+const box=document.getElementById(
+"wishlistItems"
+);
+
+if(!section||!box)return;
+
+const list=getWishlist();
+
+if(!list.length){
+
+section.style.display="none";
+box.innerHTML="";
+return;
+
+}
+
+section.style.display="block";
+
+box.innerHTML=list.map(
+(item,i)=>`
+
+<div class="cart-item">
+
+<div class="cart-item-info">
+
+<div class="cart-item-name">
+${item.name}
+</div>
+
+<div class="cart-item-price">
+₹${item.price}
+</div>
+
+</div>
+
+<button
+class="delete-cart"
+onclick="removeWishlistItem(${i})"
+>
+🗑️
+</button>
+
+</div>
+
+`
+).join("");
+
+}
+
+function removeWishlistItem(index){
+
+let list=getWishlist();
+
+list.splice(index,1);
+
+saveWishlist(list);
+
+updateWishlistButtons();
+updateWishlistCount();
+renderWishlist();
+
+}
+
+/* =========================
+   CART
+========================= */
+
+function getCart(){
+
+return JSON.parse(
+localStorage.getItem("product_cart")||"[]"
+);
+
+}
+
+function saveCart(cart){
+
+localStorage.setItem(
+"product_cart",
+JSON.stringify(cart)
+);
+
+}
+
+function addToCart(name,price,index){
+
+let cart=getCart();
+
+const found=cart.find(
+x=>x.name===name &&
+Number(x.price)===Number(price)
+);
+
+if(found){
+
+found.qty++;
+
+}else{
+
+cart.push({
+name:name,
+price:price,
+qty:1
+});
+
+}
+
+saveCart(cart);
+
+updateCartButtons();
+updateCartCount();
+renderCart();
+
+}
+
+function updateCartButtons(){
+
+const cart=getCart();
+
+document.querySelectorAll(
+".add-cart-btn"
+).forEach(btn=>{
+
+const index=btn.dataset.index;
+
+if(index===undefined)return;
+
+const item=products[index];
+
+if(!item)return;
+
+const found=cart.some(
+x=>x.name===item[0] &&
+Number(x.price)===Number(item[1])
+);
+
+btn.classList.toggle(
+"added",
+found
+);
+
+btn.textContent=found
+?"🛒 Added"
+:"🛒 Cart";
+
+});
+
+}
+
+function updateCartCount(){
+
+const count=getCart().reduce(
+(sum,x)=>
+sum+Number(x.qty||0),
+0
+);
+
+const el=document.getElementById(
+"cart-count"
+);
+
+if(el){
+el.textContent=count;
+}
+
+}
+
+function showCart(){
+
+const cartSection=document.getElementById(
+"cartSection"
+);
+
+if(!cartSection)return;
+
+cartSection.style.display="block";
+
+renderCart();
+
+cartSection.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+function hideCart(){
+
+const cartSection=document.getElementById(
+"cartSection"
+);
+
+if(cartSection){
+cartSection.style.display="none";
+}
+
+}
+
+function renderCart(){
+
+const box=document.getElementById(
+"cartItems"
+);
+
+if(!box)return;
+
+const cart=getCart();
+
+if(!cart.length){
+
+box.innerHTML=
+"<p>🛒 Cart खाली है।</p>";
+
+const total=document.getElementById(
+"cartTotal"
+);
+
+if(total){
+total.textContent="0";
+}
+
+return;
+
+}
+
+let total=0;
+
+box.innerHTML=cart.map(
+(item,i)=>{
+
+const itemTotal=
+Number(item.price)*
+Number(item.qty);
+
+total+=itemTotal;
+
+return `
+
+<div class="cart-item">
+
+<div class="cart-item-info">
+
+<div class="cart-item-name">
+${item.name}
+</div>
+
+<div class="cart-item-price">
+₹${item.price} × ${item.qty} = ₹${itemTotal}
+</div>
+
+</div>
+
+<div class="cart-qty">
+
+<button
+class="qty-btn"
+onclick="changeCartQty(${i},-1)"
+>
+−
+</button>
+
+<span class="qty-number">
+${item.qty}
+</span>
+
+<button
+class="qty-btn"
+onclick="changeCartQty(${i},1)"
+>
++
+</button>
+
+</div>
+
+<button
+class="delete-cart"
+onclick="removeCartItem(${i})"
+>
+🗑️
+</button>
+
+</div>
+
+`;
+
+}
+).join("");
+
+document.getElementById(
+"cartTotal"
+).textContent=total;
+
+}
+
+function changeCartQty(index,change){
+
+let cart=getCart();
+
+if(!cart[index])return;
+
+cart[index].qty+=change;
+
+if(cart[index].qty<=0){
+cart.splice(index,1);
+}
+
+saveCart(cart);
+
+renderCart();
+updateCartButtons();
+updateCartCount();
+
+}
+
+function removeCartItem(index){
+
+let cart=getCart();
+
+cart.splice(index,1);
+
+saveCart(cart);
+
+renderCart();
+updateCartButtons();
+updateCartCount();
+
+}
+
+function clearCart(){
+
+localStorage.removeItem(
+"product_cart"
+);
+
+renderCart();
+updateCartButtons();
+updateCartCount();
+
+}
+
+/* =========================
+   CATEGORY DROPDOWN
+========================= */
+
+function loadCategories(){
+
+const select=document.getElementById(
+"categorySelect"
+);
+
+if(!select)return;
+
+const categories=[
+...new Set(
+products.map(item=>item[2])
+)
+];
+
+select.innerHTML=
+`<option value="सभी">
+📦 सभी कैटेगरी
+</option>`;
+
+categories.forEach(categoryName=>{
+
+const option=
+document.createElement("option");
+
+option.value=categoryName;
+option.textContent=
+"📦 "+categoryName;
+
+select.appendChild(option);
+
+});
+
+}
+
+/* =========================
+   PRODUCT FILTER
+========================= */
+
+function filterProducts(){
+
+const input=document.getElementById(
+"productSearch"
+);
+
+const categorySelect=
+document.getElementById(
+"categorySelect"
+);
+
+const tbody=
+document.querySelector(
+"#productTable tbody"
+);
+
+if(!input||!categorySelect||!tbody){
+return;
+}
+
+const search=
+input.value
+.trim()
+.toLowerCase();
+
+const selectedCategory=
+categorySelect.value;
+
+let serial=0;
+
+tbody.innerHTML="";
+
+products.forEach((item,i)=>{
+
+const productName=
+String(item[0]).toLowerCase();
+
+const productCategory=
+item[2];
+
+const searchMatch=
+!search ||
+productName.includes(search);
+
+const categoryMatch=
+selectedCategory==="सभी" ||
+productCategory===selectedCategory;
+
+if(searchMatch&&categoryMatch){
+
+serial++;
+
+tbody.innerHTML+=`
+
+<tr data-category="${item[2]}">
+
+<td>
+${serial}
+</td>
+
+<td>
+${item[0]}
+</td>
+
+<td>
+₹${item[1]}
+</td>
+
+<td>
+
+<button
+id="wishlistBtn-${i}"
+class="wishlist-product-btn"
+onclick="toggleWishlist(${i})"
+>
+♡
+</button>
+
+</td>
+
+<td>
+
+<button
+class="add-cart-btn"
+data-index="${i}"
+onclick='addToCart(${JSON.stringify(item[0])},${item[1]},${i})'
+>
+🛒 Cart
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}
+
+});
+
+if(serial===0){
+
+tbody.innerHTML=`
+
+<tr>
+
+<td
+colspan="5"
+style="
+padding:20px;
+color:#e53935;
+font-weight:bold;
+"
+>
+😔 कोई प्रोडक्ट नहीं मिला।
+</td>
+
+</tr>
+
+`;
+
+}
+
+updateWishlistButtons();
+updateCartButtons();
+
+}
+
+/* =========================
+   OLD SEARCH FUNCTION
+   KEPT FOR COMPATIBILITY
+========================= */
+
+function searchProduct(){
+
+const oldInput=
+document.getElementById("search");
+
+const productInput=
+document.getElementById("productSearch");
+
+if(productInput){
+
+productInput.value=
+oldInput ? oldInput.value : productInput.value;
+
+filterProducts();
+
+return;
+
+}
+
+}
+
+/* =========================
+   WHATSAPP CART
+========================= */
+
+function sendCartToWhatsApp(){
+
+const cart=getCart();
+
+if(!cart.length){
+
+alert("🛒 Cart खाली है।");
+return;
+
+}
+
+let msg=
+"🛒 *ऑर्डर विवरण*\\n\\n";
+
+let total=0;
+
+cart.forEach((item,i)=>{
+
+const amount=
+Number(item.price)*
+Number(item.qty);
+
+total+=amount;
+
+msg+=`${i+1}. ${item.name}\\n`;
+msg+=`रेट: ₹${item.price}\\n`;
+msg+=`मात्रा: ${item.qty}\\n`;
+msg+=`कुल: ₹${amount}\\n\\n`;
+
+});
+
+msg+=`*कुल राशि: ₹${total}*`;
+
+const whatsappUrl=
+"https://wa.me/?text="+
+encodeURIComponent(msg);
+
+window.open(
+whatsappUrl,
+"_blank"
+);
+
+}
+
+/* =========================
+   PRODUCT TABLE
+========================= */
+
+function loadProducts(){
+
+const tbody=
+document.querySelector(
+"#productTable tbody"
+);
+
+if(!tbody)return;
+
+loadCategories();
+
+filterProducts();
+
+updateWishlistCount();
+updateCartCount();
+
+renderWishlist();
+renderCart();
+
+}
+
+/* =========================
+   ADD ALL TO CART
+========================= */
+
+function addAllToCart(){
+
+const list=getWishlist();
+
+if(!list.length){
+
+alert("❤️ Wishlist खाली है।");
+return;
+
+}
+
+let cart=getCart();
+
+list.forEach(item=>{
+
+const found=cart.find(
+x=>x.name===item.name &&
+Number(x.price)===Number(item.price)
+);
+
+if(found){
+
+found.qty++;
+
+}else{
+
+cart.push({
+name:item.name,
+price:item.price,
+qty:1
+});
+
+}
+
+});
+
+saveCart(cart);
+
+updateCartButtons();
+updateCartCount();
+renderCart();
+
+alert("🛒 Wishlist के सभी सामान Cart में जोड़ दिए गए।");
+
+}
+
+/* =========================
+   CLEAR WISHLIST
+========================= */
+
+function clearWishlist(){
+
+if(!getWishlist().length){
+
+return;
+
+}
+
+localStorage.removeItem(
+"product_wishlist"
+);
+
+updateWishlistButtons();
+updateWishlistCount();
+renderWishlist();
+
+}
+
+/* =========================
+   WISHLIST WHATSAPP
+========================= */
+
+function sendWishlistToWhatsApp(){
+
+const list=getWishlist();
+
+if(!list.length){
+
+alert("❤️ Wishlist खाली है।");
+return;
+
+}
+
+let msg=
+"❤️ *Wishlist*\\n\\n";
+
+list.forEach((item,i)=>{
+
+msg+=`${i+1}. ${item.name}\\n`;
+msg+=`रेट: ₹${item.price}\\n\\n`;
+
+});
+
+const whatsappUrl=
+"https://wa.me/?text="+
+encodeURIComponent(msg);
+
+window.open(
+whatsappUrl,
+"_blank"
+);
+
+}
+
+/* =========================
+   SHOW WISHLIST
+========================= */
+
+function showWishlist(){
+
+const section=
+document.getElementById(
+"wishlistSection"
+);
+
+if(!section)return;
+
+renderWishlist();
+
+section.style.display="block";
+
+section.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+/* =========================
+   PRODUCT SEARCH EVENTS
+========================= */
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+loadProducts();
+
+const productSearch=
+document.getElementById(
+"productSearch"
+);
+
+const categorySelect=
+document.getElementById(
+"categorySelect"
+);
+
+/* Product Search */
+
+if(productSearch){
+
+productSearch.addEventListener(
+"input",
+function(){
+
+filterProducts();
+
+}
+);
+
+productSearch.addEventListener(
+"keydown",
+function(e){
+
+if(e.key==="Enter"){
+
+e.preventDefault();
+
+filterProducts();
+
+this.blur();
+
+}
+
+}
+);
+
+}
+
+/* Category */
+
+if(categorySelect){
+
+categorySelect.addEventListener(
+"change",
+function(){
+
+filterProducts();
+
+}
+);
+
+}
+
+}
+);
+
+</script>
+
+</section>
+
+<footer>
+© 2026 All In One General Store
+</footer>
+
+</body>
+</html>
