@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>हमारे प्रोडक्ट्स</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;padding:0;font-family:Arial,sans-serif;background:#f1f3f6;color:#222}
+.main-box{max-width:1000px;margin:8px auto;background:#fff;min-height:100vh;padding:16px;border-radius:15px;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+.top-buttons{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.top-btn{border:0;border-radius:10px;padding:12px 18px;font-size:17px;color:#fff;font-weight:500;cursor:pointer;min-width:125px;box-shadow:0 2px 5px rgba(0,0,0,.15)}
+.top-btn:active{transform:scale(.97)}
+.wishlist-top{background:#ff1680}
+.cart-top{background:#ff9800}
+.reset-top{background:#f5262d}
+.count-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#555;font-weight:bold;min-width:32px;height:32px;border-radius:50%;margin-left:5px}
+.page-title{text-align:center;font-size:31px;font-weight:bold;margin:10px 0 22px;color:#333}
+.search-area{display:flex;gap:10px;margin-bottom:14px}
+.search-box{position:relative;flex:1}
+.search-box input{width:100%;height:65px;padding:10px 55px 10px 58px;border:2px solid #d1d1d1;border-radius:13px;font-size:22px;outline:none}
+.search-box input:focus{border-color:#00a944}
+.search-icon{position:absolute;left:22px;top:50%;transform:translateY(-50%);font-size:30px;color:#555}
+.clear-search{width:86px;border:0;border-radius:12px;background:#f5262d;color:#fff;font-size:34px;font-weight:bold;cursor:pointer}
+.category-search{margin-bottom:18px}
+.category-search select{width:100%;height:65px;padding:8px 45px 8px 18px;border:2px solid #d1d1d1;border-radius:13px;background:#fff;font-size:21px;outline:none}
+.product-heading{background:#e4f7e9;color:#087b32;padding:17px 10px;border-radius:13px;text-align:center;font-size:25px;font-weight:bold;margin-bottom:12px}
+.product-count{text-align:center;font-size:21px;color:#666;margin:14px 0 30px}
+.table-wrapper{width:100%;overflow-x:auto}
+.product-table{width:100%;border-collapse:collapse;background:#fff;table-layout:fixed}
+.product-table th{background:#00ad45;color:#fff;border:1px solid #ddd;padding:12px 5px;font-size:18px;font-weight:bold}
+.product-table td{border:1px solid #ddd;padding:12px 5px;font-size:18px;text-align:center;height:58px}
+.product-table td.product-name{text-align:left;font-weight:500;word-break:break-word}
+.product-table td.price{font-weight:bold;white-space:nowrap}
+.product-table th:nth-child(1){width:11%}
+.product-table th:nth-child(2){width:37%}
+.product-table th:nth-child(3){width:19%}
+.product-table th:nth-child(4){width:13%}
+.product-table th:nth-child(5){width:20%}
+.wishlist-btn{border:0;background:transparent;font-size:42px;line-height:1;cursor:pointer;padding:0}
+.wishlist-btn.active{color:#ff1744}
+.wishlist-btn:not(.active){color:#ddd;text-shadow:0 0 1px #888}
+.add-cart-btn{border:0;background:#ff9800;color:#fff;border-radius:9px;padding:10px 11px;font-size:16px;cursor:pointer;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,.15)}
+.add-cart-btn.active{background:#00a944}
+.add-cart-btn:active{transform:scale(.96)}
+.no-result{display:none;text-align:center;padding:35px 10px;font-size:20px;color:#777}
+.panel{display:none;padding:5px 0 20px}
+.panel-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:15px}
+.panel-top h2{margin:0;font-size:25px}
+.back-products{border:0;background:#00a944;color:#fff;padding:10px 14px;border-radius:8px;font-size:15px;cursor:pointer}
+.panel-item{background:#fff;margin-bottom:10px;padding:13px;border-radius:10px;box-shadow:0 2px 7px rgba(0,0,0,.12);border:1px solid #eee}
+.panel-item-name{font-weight:bold;font-size:18px}
+.panel-item-price{margin-top:5px;font-size:17px}
+.panel-actions{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.qty-btn{border:0;background:#ddd;padding:7px 13px;border-radius:6px;font-size:18px;cursor:pointer}
+.remove-btn{border:0;background:#e00000;color:#fff;padding:8px 12px;border-radius:6px;font-size:14px;cursor:pointer}
+.cart-add-btn{border:0;background:#ff9800;color:#fff;padding:8px 12px;border-radius:6px;font-size:14px;cursor:pointer}
+.clear-wishlist-btn{border:0;background:#f5262d;color:#fff;padding:10px 14px;border-radius:8px;font-size:15px;font-weight:bold;cursor:pointer}
+.clear-wishlist-btn:active{transform:scale(.97)}
+
+.whatsapp-wishlist-btn{
+width:100%;
+border:0;
+background:#25D366;
+color:#fff;
+padding:14px;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+box-shadow:0 2px 5px rgba(0,0,0,.15)
+}
+.whatsapp-wishlist-btn:active{transform:scale(.98)}
+
+.wishlist-bottom-clear{width:100%;margin-top:12px}
+.cart-total{background:#1976d2;color:#fff;padding:15px;border-radius:10px;font-size:20px;font-weight:bold;margin-top:15px}
+.back-top{position:fixed;right:15px;bottom:18px;z-index:2000;border:0;width:48px;height:48px;border-radius:50%;background:#00a944;color:#fff;font-size:24px;box-shadow:0 3px 10px rgba(0,0,0,.3);cursor:pointer}
+.whatsapp-cart-btn{width:100%;border:0;background:#25D366;color:#fff;padding:14px;border-radius:10px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:10px;box-shadow:0 2px 5px rgba(0,0,0,.15)}
+.whatsapp-cart-btn:active{transform:scale(.98)}
+.error-box{display:none;background:#fff3cd;color:#856404;border:1px solid #ffe69c;padding:15px;border-radius:10px;margin:15px 0;text-align:center;font-size:16px}
+@media(max-width:600px){
+.main-box{margin:8px 8px 0;padding:10px;border-radius:13px}
+.top-buttons{gap:8px;flex-wrap:nowrap}
+.top-btn{min-width:0;flex:1;padding:11px 7px;font-size:15px}
+.count-badge{min-width:29px;height:29px}
+.page-title{font-size:28px;margin:12px 0 20px}
+.search-box input{height:62px;font-size:19px;padding-left:50px}
+.search-icon{left:17px;font-size:27px}
+.clear-search{width:70px;font-size:30px}
+.category-search select{height:62px;font-size:18px}
+.product-heading{font-size:23px;padding:16px 8px}
+.product-count{font-size:19px;margin-bottom:25px}
+.product-table th{font-size:15px;padding:10px 3px}
+.product-table td{font-size:15px;padding:10px 3px;height:56px}
+.wishlist-btn{font-size:38px}
+.add-cart-btn{font-size:14px;padding:9px 8px}
+}
+@media(max-width:380px){
+.main-box{padding:8px}
+.top-btn{font-size:13px;padding:10px 4px}
+.count-badge{min-width:25px;height:25px;font-size:13px}
+.page-title{font-size:25px}
+.product-table th{font-size:12px}
+.product-table td{font-size:13px}
+.wishlist-btn{font-size:34px}
+.add-cart-btn{font-size:12px;padding:8px 5px}
+}
+</style>
+</head>
+
+<body id="top">
+
+<div class="main-box">
+
+<div class="top-buttons">
+<button class="top-btn wishlist-top" onclick="toggleWishlistPanel()">
+❤️ Wishlist <span class="count-badge" id="wishlistCount">0</span>
+</button>
+<button class="top-btn cart-top" onclick="toggleCartPanel()">
+🛒 Cart <span class="count-badge" id="cartCount">0</span>
+</button>
+<button class="top-btn reset-top" onclick="clearStorage()">🗑️ Reset</button>
+</div>
+
+<div class="page-title">🛍️ हमारे प्रोडक्ट्स</div>
+
+<div id="errorBox" class="error-box">
+⚠️ प्रोडक्ट लोड करने में समस्या हुई। पेज को दोबारा खोलें।
+</div>
+
+<div id="productFilters">
+
+<div class="search-area">
+<div class="search-box">
+<span class="search-icon">🔍</span>
+<input
+type="text"
+id="searchInput"
+placeholder="प्रोडक्ट का नाम खोजें..."
+oninput="searchProducts()"
+onkeydown="if(event.key==='Enter'){this.blur();}">
+</div>
+<button class="clear-search" onclick="clearSearch()">×</button>
+</div>
+
+<div class="category-search">
+<select id="categorySelect" onchange="searchCategory()">
+<option value="सभी">📦 सभी कैटेगरी</option>
+</select>
+</div>
+
+</div>
+
+<div id="productSection">
+
+<div class="product-heading" id="productHeading">
+📦 सभी प्रोडक्ट
+</div>
+
+<div class="product-count">
+कुल प्रोडक्ट: <span id="productCount">0</span>
+</div>
+
+<div class="table-wrapper">
+<table class="product-table">
+<thead>
+<tr>
+<th>S.No.</th>
+<th>प्रोडक्ट का नाम</th>
+<th>रेट (₹)</th>
+<th>❤️</th>
+<th>Cart</th>
+</tr>
+</thead>
+<tbody id="productBody"></tbody>
+</table>
+</div>
+
+<div id="noResult" class="no-result">
+❌ कोई प्रोडक्ट नहीं मिला।
+</div>
+
+</div>
+
+<div id="wishlistPanel" class="panel">
+
+<div class="panel-top">
+<h2>❤️ Wishlist</h2>
+<button class="back-products" onclick="showProducts()">← प्रोडक्ट</button>
+</div>
+
+<div id="wishlistList"></div>
+
+<button class="whatsapp-wishlist-btn" onclick="sendWishlistWhatsApp()">
+📲 WhatsApp पर भेजें
+</button>
+
+<button class="clear-wishlist-btn wishlist-bottom-clear" onclick="clearWishlist()">
+🗑️ Wishlist खाली करें
+</button>
+
+</div>
+
+<div id="cartPanel" class="panel">
+
+<div class="panel-top">
+<h2>🛒 Cart</h2>
+<button class="back-products" onclick="showProducts()">← प्रोडक्ट</button>
+</div>
+
+<div id="cartList"></div>
+
+<div class="cart-total">
+कुल कार्ट राशि: ₹<span id="cartTotal">0</span>
+</div>
+
+<button class="whatsapp-cart-btn" onclick="sendCartWhatsApp()">
+📲 WhatsApp पर भेजें
+</button>
+
+</div>
+
+</div>
+
+<button class="back-top" onclick="goTop()">↑</button>
+
+<script>
+"use strict";
+
+/* =========================
+   PRODUCT DATA
+========================= */
+
+let allProducts=[];
+let currentCategory="सभी";
+let currentSearch="";
+
+/* =========================
+   STORAGE
+========================= */
+
+function loadStorage(key){
+try{
+const raw=window.localStorage.getItem(key);
+if(!raw)return [];
+const data=JSON.parse(raw);
+return Array.isArray(data)?data:[];
+}catch(e){
+return [];
+}
+}
+
+function safeSetStorage(key,value){
+try{
+window.localStorage.setItem(key,JSON.stringify(value));
+}catch(e){
+console.warn("Storage unavailable:",e);
+}
+}
+
+function safeRemoveStorage(key){
+try{
+window.localStorage.removeItem(key);
+}catch(e){
+console.warn("Storage unavailable:",e);
+}
+}
+
+let cart=loadStorage("product_cart");
+let wishlist=loadStorage("product_wishlist");
+
+/* =========================
+   CATEGORY FUNCTION
+========================= */
+
+function category(categoryName,items){
+if(!Array.isArray(items))return;
+
+items.forEach(item=>{
+if(Array.isArray(item)&&item.length>=2){
+allProducts.push({
+category:String(categoryName),
+name:String(item[0]),
+price:Number(item[1])||0
+});
+}
+});
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+
+/* === किराना === */
+category("किराना",[
+["शक्कर",80],
+["चाय नारायणपुर 250g",90],
+["चाय तूफान 250g",80],
+["कॉफी पुड़ी",10],
+["काली मिर्च 100g",95],
+["इलायची प्रति नग",2],
+["शाकर (मिश्री)",120],
+["देशी शक्कर",70],
+["ओला लाडू",120],
+["तेल बोतल",110],
+["मिर्च",410],
+["पिसी मिर्च",430],
+["हल्दी 250g",60],
+["आखा धोणा",190],
+["लछण",200],
+["नमक",10],
+["पापङ थेली",70],
+["सोयाबिन",110],
+["चना दाल",100],
+["मसूर दाल",100],
+["काबुली चना",150],
+["चावल",65],
+["सूजी",55],
+["सोमा थेली",50],
+["साबूदाना",120],
+["हलवा नमकीन थेली",40],
+["हलवा नमकीन थेली",70],
+["सब्जी वाली जाडी सेव थेली",50],
+["मोटा भुजिया (मारवङी खोखा)",60],
+["आलू पापड़ी",160],
+["पीला चना",150],
+["मूंगफली",180],
+["काजू",950],
+["किसमिस",530],
+["माचिस",1],
+["माचिस पेकेट",10],
+["अगरबती",10],
+["नारियल",230],
+["सफेद धजा",5],
+["लाल धजा",5],
+["लाल पड़ाई",20],
+["मेथी",80],
+["गुड़",50],
+["अजवाइन",360],
+["मेट (मुल्तानी मिट्टी)",12]
+]);
+
+
+/* === बिस्किट === */
+category("बिस्किट",[
+["CNC बिस्किट",5],
+["नारियल बिस्किट",5],
+["पारले जी बिस्किट",5],
+["क्रिम बिस्किट",5],
+["टवंटी टवंटी बिस्किट",5],
+["मेजिक रेड बिस्किट",5],
+["मेजिक ब्ल्यू बिस्किट",5],
+["क्लासिक क्रिम बिस्किट",5],
+["पार्टनर वेफर्स",5],
+["वेफिलो वेफर बिस्किट",5],
+["क्रेकजेक बिस्किट",5]
+]);
+
+
+/* === नमकीन === */
+category("नमकीन",[
+["बीकाजी नमकीन",10],
+["बीकाजी नमकीन",5],
+["सिंग भुजिया",5],
+["श्री हरि मिक्सर",5],
+["श्रीहरि आलू सेव",5],
+["श्रीहरि गांठिंया",5],
+["श्रीहरि (रतलामी) नमकीन",5],
+["श्री हरि चना जीरा मसाला",5],
+["श्री हरि निम्बू सिंग भुजिया",5],
+["श्री हरि खट्टा मीठा मिक्स",5],
+["श्री हरि मूंग दाल",5],
+["फरारी सेवङा",5],
+["पापङी फाफङा (गांठिंया)",5],
+["मिक्सर नमकीन",5],
+["हरा मटर",5],
+["बालाजी आलू सेव",5],
+["बालाजी गांठिंया",5],
+["बालाजी तीखा मीठा मिक्स",5]
+]);
+
+
+/* === कोल्ड ड्रिंक === */
+category("कोल्ड ड्रिंक",[
+["पेप्सी पाउस",1],
+["पानी बोतल",10],
+["केम्पा ज्यूस हरा",10],
+["रबड़ी 1 रुपये वाली",1],
+["स्प्राइट",40],
+["फेन्टा",40],
+["माउन्टेन ड्यू",45],
+["नींबू पानी ठण्डा",10],
+["केम्पा ज्यूस नारंगी",10],
+["केम्पा कोला",10],
+["केम्पा स्ट्रींग",10],
+["रसकिक निम्बू पानी",10],
+["रसकिक आम ज्यूस",10],
+["फेन्टा",100]
+]);
+
+
+/* === कुरकुरे === */
+category("कुरकुरे",[
+["घङी वाला कुरकुरा",5],
+["मसाला सेव मुरमुरा",5],
+["आलू सेव",5],
+["मसाला गांठिंया",5],
+["बिस्किट वाला",5],
+["बिस्कुट बॉक्स",5],
+["बेलुन कुरकुरा",5],
+["बिग बेलुन",5],
+["गुब्बारे वाला",5],
+["श्री हरि कोरस जाली",5],
+["श्री हरि सोया चिप्स",5],
+["आमरस",5],
+["पानीपुङी",5],
+["गोल्डन समोसा",5],
+["हेड फोन",5],
+["मेक अप",5],
+["सेव समोसा",5],
+["टोय वर्ल्ड",5],
+["लाइट वाला",5],
+["सिक्का पार्टी कुरकुरा",5],
+["चॉकलेट बॉय",5],
+["चिप्स",5],
+["इनाम वाला",5],
+["मोदी का जादू",5],
+["चलती का नाम गाङी",5],
+["बच्चों का एटीएम",5],
+["बालाजी व्हील मसाला",5],
+["रोणा शेरमा",5],
+["टनाटन",5],
+["साल्टड रिफिल",5],
+["पोपकोर्न कुरकुरा",5],
+["फन पफ्स",5],
+["सिक्का पार्टी",5],
+["केस्अप कटोरी",5],
+["जिग जेग",5],
+["पापा की परी",5],
+["रस रसीला",5],
+["जिपी फ्लेमिन चिली",5],
+["टोमेटो कटोरी",5],
+["आजा मेरी गाङी में बेठ जा",5],
+["पिटारा मसाला सेव मुरमुरा",5],
+["पानी पुरी",5],
+["दुनिया हिला देंगे",5],
+["GKG जीरा पापड़",10],
+["GKG नींबू भुजिया",10],
+["सोया चिप्स",5],
+["सोया स्टिक",5],
+["मिस्टर इंडिया",5],
+["की चैन",5],
+["क्रेडिट कार्ड",5],
+["लाइट वाला",5],
+["फिंगर चिप्स",5]
+]);
+
+
+/* === स्टेशनरी === */
+category("स्टेशनरी",[
+["सीसा पेन",5],
+["रबङ (इरेजर)",5],
+["पेन",3],
+["पेन",5],
+["चार्पनर",5],
+["चोकङी कोपी",10],
+["कोपी एक लाईन",10],
+["कोपी एक लाईन",20],
+["कोपी दो लाईन",10],
+["कोपी दो लाईन",20],
+["कोपी चार लाईन",10],
+["कोपी चार लाईन",20],
+["चार्ट पेपर",10],
+["गोंद",20],
+["व्हाइटनर",25],
+["हाईलाइटर",25],
+["फ्लेग",10],
+["मार्कर",20]
+]);
+
+
+/* === मणिहारी === */
+category("मणिहारी",[
+["टिलियों पता",10],
+["टिलियों पता",5],
+["टिलीयों की राल डब्बी",5],
+["मांग भरणकी",10],
+["मांग भरने की ट्यूब",10],
+["लेडिज बटुआ",10],
+["लेडिज रूमाल",10],
+["लेडिज हाथों के मोजे",50],
+["मेहन्दी कोण",10],
+["मेहन्दी कोण",5],
+["आई लाईनर",10],
+["टीलियों की राल डब्बी",10],
+["बटर फ्लाई बकल",10],
+["पाटला",60],
+["पाटला बङा",60],
+["पाटला लाल कलर का",60],
+["मूठिया",80],
+["मूठिया",60],
+["छोटा मूठिया",20],
+["ओम",25],
+["छोटा ओम",20],
+["बङा ओम",25],
+["फेन्सी ओम",40],
+["छोटी विन्टी",10],
+["विन्टी",20],
+["विन्टी",25],
+["विटीं बड़ी",20],
+["कानो की झूबरियों",80],
+["कानो की झूबरियों",60],
+["कानो की झूबरियों",50],
+["कानों के टॉप्स",80],
+["बाल पट्टो",10],
+["बाल पट्टो (काला)",10],
+["बाल पट्टो (रंगीन)",10],
+["बकल",10],
+["बकल",20],
+["छोटी बाल पिनों",5],
+["बाल पिनों",5],
+["बाल पिनों",10],
+["चोटी रबङ",5],
+["चोटी रबङ",10],
+["तीबों",1],
+["छोटी सुईयां",5],
+["सुईयां",5],
+["बङी सुईयां",5],
+["मशीन की सुईयां",15],
+["चूंदङी की तार",5],
+["चूंदङी की तार",10],
+["चूंदङी की तार",20],
+["समीज",60],
+["बोडिज",60],
+["चड्डी",60],
+["चड्डी",30],
+["तोड़िया",200],
+["तोड़िया",100],
+["क्रिम",40],
+["चूड़ियां",80],
+["चूड़ियां",60],
+["बिछूड़ियां",10],
+["बिछूड़ियां",40],
+["गले की जाली",5]
+]);
+
+
+/* === इलेक्ट्रिक === */
+category("इलेक्ट्रिक",[
+["बल्ब 100 वाट",15],
+["एलईडी बल्ब",40],
+["पिन",10],
+["वायर प्रति फुट",3],
+["वायर प्रति फुट",5],
+["होल्डर",15],
+["रिमोट सेल",10],
+["पेंसिल सेल",10],
+["टेप गट्टी",10],
+["फेविक्विक",5]
+]);
+
+
+/* === सुपारी === */
+category("सुपारी",[
+["एलसी सुपारी",5],
+["प्रितम सुपारी",1],
+["सौंफ सुपारी",5],
+["पास-पास सुपारी",5],
+["मिनाक्षी सुपारी",10],
+["मिनाक्षी सुपारी",5],
+["मिनाक्षी गोंद सुपारी",10],
+["M M गोंद सुपारी",5],
+["आंटी सुपारी",5],
+["चुटकी सुपारी",1],
+["माही सुपारी",1],
+["टोलो सोंफ सुपारी",1],
+["मधुर सोंफ",1],
+["चांद तारा",1],
+["खट्टम खट्टा",1],
+["खटोरी",1],
+["इमली मोदक",1],
+["बोर चटनी",1],
+["चमकती चापट",1],
+["पंजाबी संतरा",1]
+]);
+
+
+/* === चाकलेट गोली === */
+category("चाकलेट/गोली",[
+["कंचन पेड़ा",1],
+["चोको गोल्ड (चॉकलेट)",5],
+["पिपरमेंट चाकलेट",2],
+["जेम चोकलेट",1],
+["किसमी चॉकलेट",1],
+["फ्रेश फ्रूट चॉकलेट",1],
+["चाकलेट इकलेर",1],
+["चाकलेट दूध मलाई",1],
+["चाकलेट कच्ची केरी",1],
+["चाकलेट किसमी",1],
+["चाकलेट फ्रेश फ्रूट",1],
+["चोकलेट माई मेंगो",1],
+["नारियल चोकलेट",1],
+["मावा अंजीर चोकलेट",1],
+["राजभोग चोकलेट",1],
+["सोन पापङी",2.5],
+["पोदिना गोली",1],
+["रंगिला लाडू",1],
+["निंजा नाइफ",5],
+["डबल टेटू",1],
+["फ्रूटो जेली",1],
+["बोर चटनी लाडू",1]
+]);
+
+
+/* === अन्य === */
+category("अन्य",[
+["जल जीरा",1],
+["सतमोला",1],
+["आंवला पुड़ी",1],
+["चूरण",1],
+["काला अंगूर",1],
+["आम पाचक",1],
+["आम पाचक",5],
+["इमली कप वाली",1],
+["इमली फॉइल पेपर में लपेटी हुई",1],
+["इनाम चोरी का माल",5],
+["इनाम भूत बंगला",5],
+["इनाम चाइना गोल्ड",5]
+]);
+
+
+/* === तम्बाकू उत्पाद === */
+category("तम्बाकू उत्पाद",[
+["धारीवाल",10],
+["मिराज",10],
+["गणेश",10],
+["तानसेन",5],
+["विमल",5],
+["नजर",5],
+["बेगम",10],
+["जाफरी",10],
+["बीड़ी देसाई",30],
+["बीङी लंगर",30],
+["गोल्ड फ्लेक सिगरेट",15],
+["गोल्ड फ्लेक सिगरेट पेकेट",140],
+["फोर स्कव्यर सिगरेट",10],
+["फोर स्कव्यर सिगरेट पेकेट",90],
+["चूना ट्यूब",2]
+]);
+
+
+/* === जनरल उत्पाद === */
+category("जनरल आइटम",[
+["एक्सल सर्फ",10],
+["यूनिलेक्स सर्फ 1 kg",50],
+["जेली वाला सर्फ",130],
+["सर्फ़ excel साबुन",10],
+["लाइफ बोय साबुन",10],
+["लक्स साबुन",10],
+["शंकर साबुन",20],
+["तेल सेवन ओयल",45],
+["शक्ति आंवला हेयर ऑयल",10],
+["शक्ति आंवला हेयर ऑयल",20],
+["ब्लेड",3],
+["ब्लेड पाकेट",25],
+["टोस पेकेट",10],
+["मेगी",10],
+["हेयर डाई",25],
+["फेयर & लवली क्रिम",20],
+["22 नम्बर पाउडर",50],
+["पाउडर",10],
+["कंघा",10],
+["कंघी",15],
+["कांच",10],
+["कांच",20],
+["मशीन का तेल",25],
+["पानी छलनी",10],
+["चाय छलनी",10],
+["बर्तन धोने का साबुन",25],
+["बर्तन धोने की जाली",10],
+["कपङा धोने का ब्रश",10],
+["कपङा धोने का ब्रश",25],
+["क्लोज अप",20],
+["कोलगेट",20],
+["टूथ ब्रूश",15],
+["कपङों के क्लिप (तणी वाले)",15],
+["क्लीनिक प्लस शेम्पू",1],
+["डव शेम्पू",2],
+["ग्लो & लवली",20],
+["चाकू",10],
+["लक्ष्मण रेखा",25]
+]);
+
+
+
+/* =========================
+   PRODUCT ID
+========================= */
+
+function productKey(product){
+return [
+product.category,
+product.name,
+Number(product.price)
+].join("|||");
+}
+
+function itemKey(item){
+return [
+item.category,
+item.name,
+Number(item.price)
+].join("|||");
+}
+
+/* =========================
+   COUNTS
+========================= */
+
+function updateCounts(){
+let cartQty=0;
+
+cart.forEach(item=>{
+cartQty+=Number(item.qty)||0;
+});
+
+const cartCount=document.getElementById("cartCount");
+const wishlistCount=document.getElementById("wishlistCount");
+
+if(cartCount)cartCount.textContent=cartQty;
+if(wishlistCount)wishlistCount.textContent=wishlist.length;
+}
+
+/* =========================
+   CATEGORY LIST
+========================= */
+
+function createCategoryList(){
+const select=document.getElementById("categorySelect");
+if(!select)return;
+
+select.innerHTML='<option value="सभी">📦 सभी कैटेगरी</option>';
+
+const categories=[];
+
+allProducts.forEach(product=>{
+if(!categories.includes(product.category)){
+categories.push(product.category);
+}
+});
+
+categories.forEach(name=>{
+const option=document.createElement("option");
+option.value=name;
+option.textContent="📦 "+name;
+select.appendChild(option);
+});
+}
+
+/* =========================
+   PRODUCT MATCH
+========================= */
+
+function isInWishlist(product){
+return wishlist.some(item=>itemKey(item)===productKey(product));
+}
+
+function isInCart(product){
+return cart.some(item=>itemKey(item)===productKey(product));
+}
+
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+function renderProducts(){
+const tbody=document.getElementById("productBody");
+const count=document.getElementById("productCount");
+const noResult=document.getElementById("noResult");
+const heading=document.getElementById("productHeading");
+
+if(!tbody)return;
+
+tbody.innerHTML="";
+
+const search=currentSearch.toLocaleLowerCase("hi");
+let serial=1;
+let visibleProducts=[];
+
+allProducts.forEach(product=>{
+const categoryMatch=
+currentCategory==="सभी"||
+product.category===currentCategory;
+
+const searchMatch=
+String(product.name)
+.toLocaleLowerCase("hi")
+.includes(search);
+
+if(categoryMatch&&searchMatch){
+visibleProducts.push(product);
+}
+});
+
+visibleProducts.forEach(product=>{
+
+const tr=document.createElement("tr");
+
+const td1=document.createElement("td");
+td1.textContent=serial++;
+
+const td2=document.createElement("td");
+td2.className="product-name";
+td2.textContent=product.name;
+
+const td3=document.createElement("td");
+td3.className="price";
+td3.textContent="₹"+product.price;
+
+const td4=document.createElement("td");
+
+const wishButton=document.createElement("button");
+wishButton.className=
+"wishlist-btn"+
+(isInWishlist(product)?" active":"");
+wishButton.title="Wishlist";
+wishButton.textContent=
+isInWishlist(product)?"❤️":"♡";
+
+wishButton.onclick=function(){
+toggleWishlist(
+product.name,
+product.price,
+product.category
+);
+};
+
+td4.appendChild(wishButton);
+
+const td5=document.createElement("td");
+
+const cartButton=document.createElement("button");
+cartButton.className=
+"add-cart-btn"+
+(isInCart(product)?" active":"");
+
+cartButton.textContent=
+isInCart(product)?"✓ कार्ट में":"🛒 जोड़ें";
+
+cartButton.onclick=function(){
+addToCart(
+product.name,
+product.price,
+product.category
+);
+};
+
+td5.appendChild(cartButton);
+
+tr.appendChild(td1);
+tr.appendChild(td2);
+tr.appendChild(td3);
+tr.appendChild(td4);
+tr.appendChild(td5);
+
+tbody.appendChild(tr);
+});
+
+if(count){
+count.textContent=visibleProducts.length;
+}
+
+if(noResult){
+noResult.style.display=
+visibleProducts.length?"none":"block";
+}
+
+if(heading){
+if(currentCategory==="सभी"){
+heading.textContent="📦 सभी प्रोडक्ट";
+}else{
+heading.textContent="📦 "+currentCategory;
+}
+}
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchProducts(){
+const input=document.getElementById("searchInput");
+if(!input)return;
+
+currentSearch=input.value.trim();
+
+currentCategory="सभी";
+
+const select=document.getElementById("categorySelect");
+if(select)select.value="सभी";
+
+renderProducts();
+}
+
+function clearSearch(){
+const input=document.getElementById("searchInput");
+
+if(input){
+input.value="";
+input.blur();
+}
+
+currentSearch="";
+renderProducts();
+}
+
+function searchCategory(){
+const select=document.getElementById("categorySelect");
+if(!select)return;
+
+currentCategory=select.value;
+currentSearch="";
+
+const input=document.getElementById("searchInput");
+
+if(input){
+input.value="";
+input.blur();
+}
+
+renderProducts();
+}
+
+/* =========================
+   CART
+========================= */
+
+function addToCart(productName,productPrice,productCategory){
+
+const existing=cart.find(item=>
+item.name===productName&&
+Number(item.price)===Number(productPrice)&&
+item.category===productCategory
+);
+
+if(existing){
+existing.qty=(Number(existing.qty)||0)+1;
+}else{
+cart.push({
+name:String(productName),
+price:Number(productPrice)||0,
+category:String(productCategory),
+qty:1
+});
+}
+
+saveCart();
+renderProducts();
+renderCart();
+}
+
+function saveCart(){
+safeSetStorage("product_cart",cart);
+updateCounts();
+}
+
+function removeCart(index){
+if(index<0||index>=cart.length)return;
+
+cart.splice(index,1);
+saveCart();
+renderCart();
+renderProducts();
+}
+
+function increaseQty(index){
+if(!cart[index])return;
+
+cart[index].qty=
+(Number(cart[index].qty)||0)+1;
+
+saveCart();
+renderCart();
+renderProducts();
+}
+
+function decreaseQty(index){
+if(!cart[index])return;
+
+if(Number(cart[index].qty)>1){
+cart[index].qty=
+Number(cart[index].qty)-1;
+}else{
+cart.splice(index,1);
+}
+
+saveCart();
+renderCart();
+renderProducts();
+}
+
+function calculateCartTotal(){
+return cart.reduce((total,item)=>{
+return total+
+(Number(item.price)||0)*
+(Number(item.qty)||0);
+},0);
+}
+
+/* =========================
+   RENDER CART
+========================= */
+
+function renderCart(){
+const list=document.getElementById("cartList");
+const total=document.getElementById("cartTotal");
+
+if(!list)return;
+
+list.innerHTML="";
+
+if(cart.length===0){
+list.innerHTML="<p>🛒 कार्ट खाली है।</p>";
+}else{
+
+cart.forEach((item,index)=>{
+
+const div=document.createElement("div");
+div.className="panel-item";
+
+const name=document.createElement("div");
+name.className="panel-item-name";
+name.textContent=
+(index+1)+". "+item.name;
+
+const price=document.createElement("div");
+price.className="panel-item-price";
+
+const itemTotal=
+(Number(item.price)||0)*
+(Number(item.qty)||0);
+
+price.textContent=
+"₹"+item.price+
+" × "+item.qty+
+" = ₹"+itemTotal;
+
+const actions=document.createElement("div");
+actions.className="panel-actions";
+
+const minus=document.createElement("button");
+minus.className="qty-btn";
+minus.textContent="−";
+minus.onclick=function(){
+decreaseQty(index);
+};
+
+const qty=document.createElement("b");
+qty.textContent=item.qty;
+
+const plus=document.createElement("button");
+plus.className="qty-btn";
+plus.textContent="+";
+plus.onclick=function(){
+increaseQty(index);
+};
+
+const remove=document.createElement("button");
+remove.className="remove-btn";
+remove.textContent="हटाएं";
+remove.onclick=function(){
+removeCart(index);
+};
+
+actions.appendChild(minus);
+actions.appendChild(qty);
+actions.appendChild(plus);
+actions.appendChild(remove);
+
+div.appendChild(name);
+div.appendChild(price);
+div.appendChild(actions);
+
+list.appendChild(div);
+
+});
+}
+
+if(total){
+total.textContent=calculateCartTotal();
+}
+}
+
+/* =========================
+   CART PANEL
+========================= */
+
+function toggleCartPanel(){
+
+const panel=document.getElementById("cartPanel");
+if(!panel)return;
+
+const visible=panel.style.display==="block";
+
+if(visible){
+showProducts();
+return;
+}
+
+document.getElementById("productSection").style.display="none";
+document.getElementById("wishlistPanel").style.display="none";
+document.getElementById("productFilters").style.display="none";
+
+panel.style.display="block";
+
+renderCart();
+goTop();
+}
+
+/* =========================
+   WISHLIST
+========================= */
+
+function toggleWishlist(
+productName,
+productPrice,
+productCategory
+){
+
+const index=wishlist.findIndex(item=>
+item.name===productName&&
+Number(item.price)===Number(productPrice)&&
+item.category===productCategory
+);
+
+if(index>=0){
+
+wishlist.splice(index,1);
+
+}else{
+
+wishlist.push({
+name:String(productName),
+price:Number(productPrice)||0,
+category:String(productCategory)
+});
+
+}
+
+saveWishlist();
+renderProducts();
+renderWishlist();
+}
+
+function saveWishlist(){
+safeSetStorage("product_wishlist",wishlist);
+updateCounts();
+}
+
+/* =========================
+   WISHLIST PANEL
+========================= */
+
+function toggleWishlistPanel(){
+
+const panel=document.getElementById("wishlistPanel");
+if(!panel)return;
+
+const visible=panel.style.display==="block";
+
+if(visible){
+showProducts();
+return;
+}
+
+document.getElementById("productSection").style.display="none";
+document.getElementById("cartPanel").style.display="none";
+document.getElementById("productFilters").style.display="none";
+
+panel.style.display="block";
+
+renderWishlist();
+goTop();
+}
+
+/* =========================
+   RENDER WISHLIST
+========================= */
+
+function renderWishlist(){
+
+const list=document.getElementById("wishlistList");
+if(!list)return;
+
+list.innerHTML="";
+
+if(wishlist.length===0){
+
+list.innerHTML="<p>❤️ Wishlist खाली है।</p>";
+return;
+
+}
+
+wishlist.forEach((item,index)=>{
+
+const div=document.createElement("div");
+div.className="panel-item";
+
+const name=document.createElement("div");
+name.className="panel-item-name";
+name.textContent=
+(index+1)+". "+item.name;
+
+const price=document.createElement("div");
+price.className="panel-item-price";
+price.textContent="₹"+item.price;
+
+const actions=document.createElement("div");
+actions.className="panel-actions";
+
+const cartBtn=document.createElement("button");
+cartBtn.className="cart-add-btn";
+cartBtn.textContent="🛒 कार्ट में डालें";
+
+cartBtn.onclick=function(){
+
+addToCart(
+item.name,
+item.price,
+item.category
+);
+
+renderWishlist();
+};
+
+const removeBtn=document.createElement("button");
+removeBtn.className="remove-btn";
+removeBtn.textContent="हटाएं";
+
+removeBtn.onclick=function(){
+removeWishlist(index);
+};
+
+actions.appendChild(cartBtn);
+actions.appendChild(removeBtn);
+
+div.appendChild(name);
+div.appendChild(price);
+div.appendChild(actions);
+
+list.appendChild(div);
+
+});
+}
+
+/* =========================
+   REMOVE WISHLIST
+========================= */
+
+function removeWishlist(index){
+
+if(index<0||index>=wishlist.length)return;
+
+wishlist.splice(index,1);
+
+saveWishlist();
+renderWishlist();
+renderProducts();
+}
+
+/* =========================
+   CLEAR WISHLIST
+========================= */
+
+function clearWishlist(){
+
+if(wishlist.length===0){
+alert("❤️ Wishlist पहले से खाली है।");
+return;
+}
+
+const ok=confirm(
+"⚠️ क्या आप पूरी Wishlist खाली करना चाहते हैं?\n\n"+
+"Wishlist के सभी आइटम हट जायेंगे।"
+);
+
+if(!ok)return;
+
+wishlist=[];
+
+saveWishlist();
+renderWishlist();
+renderProducts();
+
+alert("✅ Wishlist खाली कर दी गई।");
+}
+
+/* =========================
+   RESET
+========================= */
+
+function clearStorage(){
+
+const ok=confirm(
+"⚠️ क्या आप कार्ट और विशलिस्ट का डेटा क्लियर करना चाहते हैं?\n\n"+
+"कार्ट और विशलिस्ट से आइटम हट जायेंगे।"
+);
+
+if(!ok)return;
+
+safeRemoveStorage("product_cart");
+safeRemoveStorage("product_wishlist");
+
+cart=[];
+wishlist=[];
+
+updateCounts();
+renderProducts();
+renderCart();
+renderWishlist();
+
+alert("✅ कार्ट और विशलिस्ट का डेटा क्लियर हो गया।");
+}
+
+/* =========================
+   WHATSAPP
+========================= */
+
+function sendCartWhatsApp(){
+
+if(cart.length===0){
+alert("🛒 कार्ट खाली है।");
+return;
+}
+
+let maxNameLength=7;
+
+cart.forEach(item=>{
+maxNameLength=Math.max(
+maxNameLength,
+String(item.name).length
+);
+});
+
+const nameWidth=maxNameLength+4;
+const rateWidth=10;
+const qtyWidth=9;
+
+function padRight(text,width){
+text=String(text);
+return text+
+" ".repeat(
+Math.max(1,width-text.length)
+);
+}
+
+let message="🛒 *ऑर्डर विवरण*\n";
+
+message+="━━━━━━━━━━━━━━━━━\n";
+
+message+=
+padRight("प्रोडक्ट",nameWidth)+
+padRight("रेट",rateWidth)+
+padRight("मात्रा",qtyWidth)+
+"    कुल\n";
+
+message+="━━━━━━━━━━━━━━━━━\n";
+
+cart.forEach(item=>{
+
+const total=
+(Number(item.price)||0)*
+(Number(item.qty)||0);
+
+message+=
+padRight(item.name,nameWidth)+
+padRight("₹"+item.price,rateWidth)+
+padRight(item.qty,qtyWidth)+
+"₹"+total+
+"\n";
+
+});
+
+message+="━━━━━━━━━━━━━━━━━\n";
+
+message+=
+"💰 *कुल कार्ट राशि: ₹"+
+calculateCartTotal()+
+"*";
+
+const whatsappURL=
+"https://wa.me/?text="+
+encodeURIComponent(message);
+
+window.open(whatsappURL,"_blank");
+}
+
+
+function sendWishlistWhatsApp(){
+
+if(wishlist.length===0){
+alert("❤️ Wishlist खाली है।");
+return;
+}
+
+let maxNameLength=7;
+
+wishlist.forEach(item=>{
+maxNameLength=Math.max(
+maxNameLength,
+String(item.name).length
+);
+});
+
+const nameWidth=maxNameLength+4;
+const rateWidth=10;
+
+function padRight(text,width){
+text=String(text);
+return text+
+" ".repeat(
+Math.max(1,width-text.length)
+);
+}
+
+let message="❤️ *Wishlist विवरण*\n";
+
+message+="━━━━━━━━━━━━━━━━━\n";
+
+message+=
+padRight("प्रोडक्ट",nameWidth)+
+"रेट\n";
+
+message+="━━━━━━━━━━━━━━━━━\n";
+
+wishlist.forEach(item=>{
+
+message+=
+padRight(item.name,nameWidth)+
+"₹"+item.price+
+"\n";
+
+});
+
+message+="━━━━━━━━━━━━━━━━━\n";
+
+message+="❤️ *कुल Wishlist आइटम: "+
+wishlist.length+
+"*";
+
+const whatsappURL=
+"https://wa.me/?text="+
+encodeURIComponent(message);
+
+window.open(whatsappURL,"_blank");
+}
+
+/* =========================
+   SHOW PRODUCTS
+========================= */
+
+function showProducts(){
+
+document.getElementById("productSection").style.display="block";
+document.getElementById("wishlistPanel").style.display="none";
+document.getElementById("cartPanel").style.display="none";
+document.getElementById("productFilters").style.display="block";
+
+renderProducts();
+goTop();
+}
+
+/* =========================
+   TOP
+========================= */
+
+function goTop(){
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+}
+
+/* =========================
+   INITIALIZATION
+========================= */
+
+function initializeApp(){
+
+try{
+
+createCategoryList();
+updateCounts();
+renderProducts();
+
+const errorBox=
+document.getElementById("errorBox");
+
+if(errorBox){
+errorBox.style.display="none";
+}
+
+}catch(error){
+
+console.error("App initialization error:",error);
+
+const errorBox=
+document.getElementById("errorBox");
+
+if(errorBox){
+errorBox.style.display="block";
+}
+
+}
+
+}
+
+/* =========================
+   START
+========================= */
+
+if(document.readyState==="loading"){
+document.addEventListener(
+"DOMContentLoaded",
+initializeApp
+);
+}else{
+initializeApp();
+}
+
+</script>
+
+</body>
+</html>
